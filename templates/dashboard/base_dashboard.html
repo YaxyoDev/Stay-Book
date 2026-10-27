@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Menejer boshqaruv paneli — StayBook{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- Sidebar Navigation -->
+    <aside class="lg:col-span-3 bg-white rounded-3xl p-6 shadow-sm border border-border-subtle sticky top-28">
+      <div class="flex items-center gap-3 pb-6 mb-6 border-b border-border-subtle">
+        <div class="w-12 h-12 rounded-2xl bg-secondary text-white flex items-center justify-center shadow-sm">
+          <span class="material-symbols-outlined text-2xl">dashboard</span>
+        </div>
+        <div>
+          <h2 class="font-title text-base font-bold text-primary">Menejer Paneli</h2>
+          <span class="inline-block px-2 py-0.5 rounded-full bg-amber-soft text-amber-900 text-[10px] font-bold">
+            StayBook Partner
+          </span>
+        </div>
+      </div>
+
+      <nav class="space-y-1 text-xs font-semibold">
+        <a href="{% url 'dashboard:overview' %}" class="flex items-center gap-3 px-4 py-3 rounded-2xl transition-colors {% if request.resolver_match.url_name == 'overview' %}bg-primary text-white shadow-sm{% else %}text-gray-700 hover:bg-surface-container-low{% endif %}">
+          <span class="material-symbols-outlined text-lg">insights</span>
+          <span>Umumiy ko'rsatkichlar</span>
+        </a>
+
+        <a href="{% url 'dashboard:hotels' %}" class="flex items-center gap-3 px-4 py-3 rounded-2xl transition-colors {% if request.resolver_match.url_name == 'hotels' %}bg-primary text-white shadow-sm{% else %}text-gray-700 hover:bg-surface-container-low{% endif %}">
+          <span class="material-symbols-outlined text-lg">apartment</span>
+          <span>Mehmonxonalarim</span>
+        </a>
+
+        <a href="{% url 'dashboard:rooms' %}" class="flex items-center gap-3 px-4 py-3 rounded-2xl transition-colors {% if request.resolver_match.url_name == 'rooms' %}bg-primary text-white shadow-sm{% else %}text-gray-700 hover:bg-surface-container-low{% endif %}">
+          <span class="material-symbols-outlined text-lg">meeting_room</span>
+          <span>Xonalar boshqaruvi</span>
+        </a>
+
+        <a href="{% url 'dashboard:bookings' %}" class="flex items-center gap-3 px-4 py-3 rounded-2xl transition-colors {% if request.resolver_match.url_name == 'bookings' %}bg-primary text-white shadow-sm{% else %}text-gray-700 hover:bg-surface-container-low{% endif %}">
+          <span class="material-symbols-outlined text-lg">fact_check</span>
+          <span>Kelgan bronlar</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="lg:col-span-9 flex flex-col gap-8">
+      {% block dashboard_content %}{% endblock %}
+    </main>
+  </div>
+</div>
+{% endblock %}

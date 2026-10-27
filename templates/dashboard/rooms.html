@@ -1,0 +1,172 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block dashboard_content %}
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+  <div>
+    <h1 class="font-headline-lg text-2xl font-bold text-primary">Xonalar boshqaruvi</h1>
+    <p class="text-xs text-gray-500 mt-1">Mehmonxona xonalarini kiritish, narx va faol holatini nazorat qilish</p>
+  </div>
+  <button onclick="document.getElementById('addRoomModal').classList.remove('hidden')" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary-container text-white font-semibold text-xs shadow-sm hover:bg-navy-deep transition-colors self-start sm:self-auto">
+    <span class="material-symbols-outlined text-lg">add</span>
+    <span>Yangi xona qo'shish</span>
+  </button>
+</div>
+
+<!-- Hotel Filter Bar -->
+<div class="bg-white p-4 rounded-2xl border border-border-subtle shadow-sm flex flex-wrap items-center gap-2">
+  <span class="text-xs font-semibold text-gray-500">Mehmonxona bo'yicha:</span>
+  <a href="{% url 'dashboard:rooms' %}" class="px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors {% if not selected_hotel %}bg-primary text-white{% else %}bg-surface-container-low text-gray-700 hover:bg-surface-container{% endif %}">
+    Barchasi
+  </a>
+  {% for h in hotels %}
+    <a href="{% url 'dashboard:rooms' %}?hotel={{ h.id }}" class="px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors {% if selected_hotel == h.id %}bg-primary text-white{% else %}bg-surface-container-low text-gray-700 hover:bg-surface-container{% endif %}">
+      {{ h.name }}
+    </a>
+  {% endfor %}
+</div>
+
+<!-- Rooms Table -->
+<div class="bg-white rounded-3xl p-6 shadow-sm border border-border-subtle">
+  <div class="overflow-x-auto">
+    <table class="w-full text-left text-xs">
+      <thead>
+        <tr class="border-b border-border-subtle text-gray-400 font-label-md uppercase tracking-wider">
+          <th class="py-3 px-3">Xona №</th>
+          <th class="py-3 px-3">Mehmonxona & Nomi</th>
+          <th class="py-3 px-3">Toifasi</th>
+          <th class="py-3 px-3">Sig'imi</th>
+          <th class="py-3 px-3">Narxi (kecha)</th>
+          <th class="py-3 px-3">Holati</th>
+          <th class="py-3 px-3 text-right">Amallar</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border-subtle">
+        {% for room in rooms %}
+        <tr class="hover:bg-surface-container-low transition-colors {% if not room.is_active %}opacity-60 bg-gray-50{% endif %}">
+          <td class="py-3.5 px-3">
+            <span class="font-bold text-sm text-primary">№ {{ room.number }}</span>
+          </td>
+          <td class="py-3.5 px-3">
+            <span class="font-medium text-gray-800 block">{{ room.title }}</span>
+            <span class="text-[11px] text-gray-400">{{ room.hotel.name }}</span>
+          </td>
+          <td class="py-3.5 px-3">
+            <span class="px-2 py-0.5 rounded-full bg-surface-container text-secondary text-[10px] font-semibold">
+              {{ room.get_room_type_display }}
+            </span>
+          </td>
+          <td class="py-3.5 px-3">
+            <span class="text-gray-700 font-medium">{{ room.capacity_adults }} katta{% if room.capacity_children %}, {{ room.capacity_children }} bola{% endif %}</span>
+          </td>
+          <td class="py-3.5 px-3">
+            <strong class="font-bold text-primary">{{ room.price_per_night|floatformat:0 }} so'm</strong>
+          </td>
+          <td class="py-3.5 px-3">
+            {% if room.is_active %}
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-900 border border-emerald-200 text-[10px] font-bold">Faol</span>
+            {% else %}
+              <span class="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-900 border border-rose-200 text-[10px] font-bold">Nofaol</span>
+            {% endif %}
+          </td>
+          <td class="py-3.5 px-3 text-right">
+            <div class="flex items-center justify-end gap-2">
+              <a href="{% url 'hotels:room_detail' room.id %}" target="_blank" class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-variant text-primary" title="Ko'rish">
+                <span class="material-symbols-outlined text-base">visibility</span>
+              </a>
+              <!-- Toggle Active status -->
+              <form method="post" class="inline">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="toggle_active"/>
+                <input type="hidden" name="room_id" value="{{ room.id }}"/>
+                <button type="submit" class="p-1.5 rounded-lg {% if room.is_active %}bg-rose-50 text-rose-600 hover:bg-rose-100{% else %}bg-emerald-50 text-status-success hover:bg-emerald-100{% endif %}" title="{% if room.is_active %}Faolsizlantirish{% else %}Faollashtirish{% endif %}">
+                  <span class="material-symbols-outlined text-base">{% if room.is_active %}toggle_on{% else %}toggle_off{% endif %}</span>
+                </button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7" class="py-8 text-center text-gray-400">
+            Xonalar mavjud emas. Yangi xona qo'shish tugmasini bosing.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal: Add New Room -->
+<div id="addRoomModal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl animate-pop">
+    <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
+      <h2 class="font-title text-lg font-bold text-primary">Yangi xona qo'shish</h2>
+      <button onclick="document.getElementById('addRoomModal').classList.add('hidden')" class="p-1 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600">
+        <span class="material-symbols-outlined text-xl">close</span>
+      </button>
+    </div>
+
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="create_room"/>
+
+      <div>
+        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">{{ form.hotel.label }} *</label>
+        {{ form.hotel }}
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">{{ form.number.label }} *</label>
+          {{ form.number }}
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">{{ form.title.label }} *</label>
+          {{ form.title }}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">{{ form.room_type.label }} *</label>
+          {{ form.room_type }}
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">{{ form.capacity_adults.label }} *</label>
+          {{ form.capacity_adults }}
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">{{ form.capacity_children.label }}</label>
+          {{ form.capacity_children }}
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">{{ form.price_per_night.label }} *</label>
+        {{ form.price_per_night }}
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">{{ form.description.label }}</label>
+        {{ form.description }}
+      </div>
+
+      <div class="flex items-center gap-2 pt-2">
+        {{ form.is_active }}
+        <label class="text-xs font-semibold text-gray-700" for="{{ form.is_active.id_for_label }}">{{ form.is_active.label }}</label>
+      </div>
+
+      <div class="pt-4 border-t border-border-subtle flex justify-end gap-3">
+        <button type="button" onclick="document.getElementById('addRoomModal').classList.add('hidden')" class="px-4 py-2 rounded-xl border border-border-subtle text-xs font-semibold text-gray-600 hover:bg-gray-50">
+          Bekor qilish
+        </button>
+        <button type="submit" class="px-5 py-2 rounded-xl bg-primary-container text-white text-xs font-semibold hover:bg-navy-deep">
+          Xonani saqlash
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

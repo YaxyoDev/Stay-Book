@@ -1,0 +1,171 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block dashboard_content %}
+<!-- Welcome & Quick Stats Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+  <div>
+    <h1 class="font-headline-lg text-2xl font-bold text-primary">Menejer boshqaruv hisoboti</h1>
+    <p class="text-xs text-gray-500 mt-1">Bugun: {{ today|date:"d-F, Y" }} yil • Mehmonxonalar faoliyati holati</p>
+  </div>
+  <a href="{% url 'dashboard:bookings' %}" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-secondary text-white font-semibold text-xs shadow-sm hover:bg-on-secondary-container transition-colors self-start sm:self-auto">
+    <span>Barcha bronlarni ko'rish</span>
+    <span class="material-symbols-outlined text-base">arrow_forward</span>
+  </a>
+</div>
+
+<!-- 4 KPI Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  <!-- Card 1: Bugungi check-in -->
+  <div class="bg-white p-5 rounded-3xl shadow-sm border border-border-subtle flex flex-col justify-between">
+    <div class="flex items-center justify-between">
+      <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Bugungi check-in</span>
+      <div class="w-10 h-10 rounded-xl bg-teal-light text-secondary flex items-center justify-center">
+        <span class="material-symbols-outlined text-xl">login</span>
+      </div>
+    </div>
+    <div class="mt-4">
+      <span class="font-headline-lg text-3xl font-extrabold text-primary">{{ today_checkins_count }}</span>
+      <span class="text-xs text-gray-500 block mt-1">nafar mehmon kutilyapti</span>
+    </div>
+  </div>
+
+  <!-- Card 2: Yangi kutilayotgan bronlar -->
+  <div class="bg-white p-5 rounded-3xl shadow-sm border border-border-subtle flex flex-col justify-between">
+    <div class="flex items-center justify-between">
+      <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Kutilayotganlar</span>
+      <div class="w-10 h-10 rounded-xl bg-amber-soft text-amber-900 flex items-center justify-center">
+        <span class="material-symbols-outlined text-xl">hourglass_top</span>
+      </div>
+    </div>
+    <div class="mt-4">
+      <span class="font-headline-lg text-3xl font-extrabold text-status-warning">{{ pending_bookings_count }}</span>
+      <span class="text-xs text-status-warning font-semibold block mt-1">tasdiqlash talab etiladi</span>
+    </div>
+  </div>
+
+  <!-- Card 3: Band xonalar bugun -->
+  <div class="bg-white p-5 rounded-3xl shadow-sm border border-border-subtle flex flex-col justify-between">
+    <div class="flex items-center justify-between">
+      <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Band xonalar</span>
+      <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center">
+        <span class="material-symbols-outlined text-xl">bedroom_parent</span>
+      </div>
+    </div>
+    <div class="mt-4">
+      <span class="font-headline-lg text-3xl font-extrabold text-primary">{{ occupied_rooms_count }}</span>
+      <span class="text-xs text-gray-500 block mt-1">bugun yashayotganlar</span>
+    </div>
+  </div>
+
+  <!-- Card 4: Umumiy bron qiymatlari -->
+  <div class="bg-white p-5 rounded-3xl shadow-sm border border-border-subtle flex flex-col justify-between">
+    <div class="flex items-center justify-between">
+      <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Bron qiymatlari</span>
+      <div class="w-10 h-10 rounded-xl bg-surface-container text-primary flex items-center justify-center">
+        <span class="material-symbols-outlined text-xl">payments</span>
+      </div>
+    </div>
+    <div class="mt-4">
+      <span class="font-price-md text-xl sm:text-2xl font-extrabold text-primary">{{ total_revenue_stats|floatformat:0 }}</span>
+      <span class="text-[10px] text-gray-400 block mt-1">so'm (tasdiqlangan bronlar)</span>
+    </div>
+  </div>
+</div>
+
+<!-- Recent Incoming Bookings Table -->
+<div class="bg-white rounded-3xl p-6 shadow-sm border border-border-subtle">
+  <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
+    <h2 class="font-title text-base font-bold text-primary flex items-center gap-2">
+      <span class="material-symbols-outlined text-secondary text-xl">pending_actions</span>
+      So'nggi kelgan buyurtmalar
+    </h2>
+    <a href="{% url 'dashboard:bookings' %}" class="text-xs text-secondary hover:underline font-semibold">
+      Hammasi ({{ total_bookings_count }})
+    </a>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-left text-xs">
+      <thead>
+        <tr class="border-b border-border-subtle text-gray-400 font-label-md uppercase tracking-wider">
+          <th class="py-3 px-3">Mehmon</th>
+          <th class="py-3 px-3">Mehmonxona & Xona</th>
+          <th class="py-3 px-3">Sanalar</th>
+          <th class="py-3 px-3">Qiymat</th>
+          <th class="py-3 px-3">Holat</th>
+          <th class="py-3 px-3 text-right">Amallar</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border-subtle">
+        {% for booking in recent_bookings %}
+        <tr class="hover:bg-surface-container-low transition-colors">
+          <td class="py-3.5 px-3">
+            <strong class="font-bold text-primary block">{{ booking.guest_name }}</strong>
+            <span class="text-[11px] text-gray-500">{{ booking.guest_phone }}</span>
+          </td>
+          <td class="py-3.5 px-3">
+            <span class="font-medium text-gray-800 block truncate max-w-[150px]">{{ booking.room.hotel.name }}</span>
+            <span class="text-[11px] text-secondary font-semibold">№ {{ booking.room.number }} ({{ booking.room.title }})</span>
+          </td>
+          <td class="py-3.5 px-3">
+            <span class="text-gray-800 font-medium block">{{ booking.check_in|date:"d M" }} — {{ booking.check_out|date:"d M" }}</span>
+            <span class="text-[11px] text-gray-400">{{ booking.nights }} kecha</span>
+          </td>
+          <td class="py-3.5 px-3">
+            <strong class="font-bold text-primary">{{ booking.total_price|floatformat:0 }} so'm</strong>
+          </td>
+          <td class="py-3.5 px-3">
+            {% if booking.status == 'PENDING' %}
+              <span class="px-2.5 py-0.5 rounded-full bg-amber-soft text-amber-900 text-[10px] font-bold">Kutilmoqda</span>
+            {% elif booking.status == 'CONFIRMED' %}
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-900 text-[10px] font-bold">Tasdiqlangan</span>
+            {% elif booking.status == 'COMPLETED' %}
+              <span class="px-2.5 py-0.5 rounded-full bg-teal-50 text-secondary text-[10px] font-bold">Yakunlangan</span>
+            {% elif booking.status == 'CANCELLED' %}
+              <span class="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-900 text-[10px] font-bold">Bekor qilingan</span>
+            {% else %}
+              <span class="px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-700 text-[10px] font-bold">Rad etilgan</span>
+            {% endif %}
+          </td>
+          <td class="py-3.5 px-3 text-right">
+            <div class="flex items-center justify-end gap-1.5">
+              <a href="{% url 'bookings:detail' booking.id %}" class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-variant text-primary" title="Batafsil">
+                <span class="material-symbols-outlined text-base">visibility</span>
+              </a>
+
+              {% if booking.status == 'PENDING' %}
+                <!-- Quick Approve -->
+                <form action="{% url 'bookings:status_update' booking.id %}" method="post" class="inline">
+                  {% csrf_token %}
+                  <input type="hidden" name="status" value="CONFIRMED"/>
+                  <input type="hidden" name="next" value="{% url 'dashboard:overview' %}"/>
+                  <button type="submit" class="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-status-success font-bold" title="Tasdiqlash">
+                    <span class="material-symbols-outlined text-base">check</span>
+                  </button>
+                </form>
+                <!-- Quick Reject -->
+                <form action="{% url 'bookings:status_update' booking.id %}" method="post" class="inline">
+                  {% csrf_token %}
+                  <input type="hidden" name="status" value="REJECTED"/>
+                  <input type="hidden" name="next" value="{% url 'dashboard:overview' %}"/>
+                  <button type="submit" class="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600" title="Rad etish" onclick="return confirm('Bronni rad etmoqchimisiz?');">
+                    <span class="material-symbols-outlined text-base">close</span>
+                  </button>
+                </form>
+              {% endif %}
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6" class="py-8 text-center text-gray-400">
+            Hozircha buyurtmalar kelib tushmagan.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
