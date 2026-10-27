@@ -14,6 +14,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('hotels/', include('hotels.urls', namespace='hotels')),
     path('bookings/', include('bookings.urls', namespace='bookings')),
+    path('reviews/', include('reviews.urls', namespace='reviews')),
     path('dashboard/', include('dashboard.urls', namespace='dashboard')),
 ]
 

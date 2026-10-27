@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bron qilish — {{ room.title }} — StayBook{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+  <!-- Breadcrumb -->
+  <nav aria-label="Breadcrumb" class="flex items-center gap-2 font-label-md text-xs text-on-surface-variant mb-6">
+    <a class="hover:text-secondary transition-colors" href="{% url 'home' %}">Bosh sahifa</a>
+    <span class="material-symbols-outlined text-xs">chevron_right</span>
+    <a class="hover:text-secondary transition-colors" href="{{ hotel.get_absolute_url }}">{{ hotel.name }}</a>
+    <span class="material-symbols-outlined text-xs">chevron_right</span>
+    <span class="text-on-surface font-semibold">Bron yaratish</span>
+  </nav>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- Left Column: Booking Form -->
+    <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-border-subtle">
+      <div class="flex items-center gap-3 pb-6 mb-6 border-b border-border-subtle">
+        <div class="w-12 h-12 rounded-2xl bg-teal-light text-secondary flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">book_online</span>
+        </div>
+        <div>
+          <h1 class="font-headline-md text-xl sm:text-2xl font-bold text-primary">Bron ma'lumotlarini to'ldiring</h1>
+          <p class="text-xs text-gray-500 mt-0.5">Xonani band qilish uchun shaxsiy ma'lumotlaringizni tasdiqlang</p>
+        </div>
+      </div>
+
+      <!-- Trust notice -->
+      <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs mb-6 flex items-start gap-3">
+        <span class="material-symbols-outlined text-xl text-status-success shrink-0 mt-0.5">verified_user</span>
+        <div>
+          <strong class="font-bold block">Oldindan to'lov talab qilinmaydi</strong>
+          <span class="text-emerald-800">To'lov mehmonxonaga yetib borganda qabul qilinadi. Karta ma'lumotlari kiritish shart emas.</span>
+        </div>
+      </div>
+
+      <form method="post" class="space-y-5">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+          <div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs">
+            {% for error in form.non_field_errors %}
+              <p class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base">error</span> {{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Date Selection -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.check_in.id_for_label }}">
+              {{ form.check_in.label }} *
+            </label>
+            {{ form.check_in }}
+            {% if form.check_in.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.check_in.errors.0 }}</p>
+            {% endif %}
+          </div>
+
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.check_out.id_for_label }}">
+              {{ form.check_out.label }} *
+            </label>
+            {{ form.check_out }}
+            {% if form.check_out.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.check_out.errors.0 }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Guests -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.adults.id_for_label }}">
+              {{ form.adults.label }} (maks: {{ room.capacity_adults }}) *
+            </label>
+            {{ form.adults }}
+            {% if form.adults.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.adults.errors.0 }}</p>
+            {% endif %}
+          </div>
+
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.children.id_for_label }}">
+              {{ form.children.label }} (maks: {{ room.capacity_children }})
+            </label>
+            {{ form.children }}
+            {% if form.children.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.children.errors.0 }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Contact details -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.guest_name.id_for_label }}">
+              {{ form.guest_name.label }} *
+            </label>
+            {{ form.guest_name }}
+            {% if form.guest_name.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.guest_name.errors.0 }}</p>
+            {% endif %}
+          </div>
+
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.guest_phone.id_for_label }}">
+              {{ form.guest_phone.label }} *
+            </label>
+            {{ form.guest_phone }}
+            {% if form.guest_phone.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.guest_phone.errors.0 }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Special requests -->
+        <div>
+          <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.special_requests.id_for_label }}">
+            {{ form.special_requests.label }}
+          </label>
+          {{ form.special_requests }}
+        </div>
+
+        <div class="pt-4 border-t border-border-subtle">
+          <button type="submit" class="w-full py-4 px-6 rounded-2xl bg-secondary hover:bg-on-secondary-container text-white font-label-lg text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group active:scale-[0.99]">
+            <span class="material-symbols-outlined text-xl transition-transform group-hover:scale-110">check_circle</span>
+            <span>Bronni tasdiqlash va yuborish</span>
+          </button>
+          <p class="text-[11px] text-gray-500 text-center mt-2">
+            "Bronni tasdiqlash" tugmasini bosish orqali siz StayBook ommaviy ofertasi va qoidalariga rozilik bildirasiz.
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Right Column: Room & Hotel Summary Card -->
+    <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-border-subtle sticky top-28">
+      <h2 class="font-title text-base font-bold text-primary mb-4 pb-3 border-b border-border-subtle">
+        Bron xulosasi
+      </h2>
+
+      <!-- Hotel info -->
+      <div class="flex items-center gap-4 mb-5">
+        <div class="w-20 h-20 rounded-2xl overflow-hidden bg-surface-container shrink-0">
+          {% if hotel.primary_image %}
+            <img src="{{ hotel.primary_image.image.url }}" alt="{{ hotel.name }}" class="w-full h-full object-cover"/>
+          {% else %}
+            <div class="w-full h-full flex items-center justify-center text-gray-400">
+              <span class="material-symbols-outlined text-3xl">hotel</span>
+            </div>
+          {% endif %}
+        </div>
+        <div>
+          <span class="text-xs text-secondary font-bold uppercase tracking-wider">{{ hotel.city }}</span>
+          <h3 class="font-headline-md text-base font-bold text-primary">{{ hotel.name }}</h3>
+          <p class="text-xs text-gray-500 flex items-center gap-1 mt-0.5">
+            <span class="material-symbols-outlined text-sm text-secondary">location_on</span>
+            <span class="truncate">{{ hotel.address }}</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Room info -->
+      <div class="p-4 rounded-2xl bg-surface-container-low mb-6 space-y-2 text-xs">
+        <div class="flex justify-between">
+          <span class="text-gray-600">Tanlangan xona:</span>
+          <strong class="text-primary font-bold">{{ room.title }} (№ {{ room.number }})</strong>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-600">Toifasi:</span>
+          <span class="font-semibold text-gray-800">{{ room.get_room_type_display }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-600">Bir kecha narxi:</span>
+          <span class="font-bold text-primary">{{ room.price_per_night|floatformat:0 }} so'm</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-600">Kirish vaqti:</span>
+          <span class="font-medium text-gray-800">{{ hotel.check_in_time|time:"H:i" }} dan keyin</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-600">Chiqish vaqti:</span>
+          <span class="font-medium text-gray-800">{{ hotel.check_out_time|time:"H:i" }} gacha</span>
+        </div>
+      </div>
+
+      <!-- Payment Policy -->
+      <div class="pt-4 border-t border-border-subtle space-y-3 text-xs">
+        <div class="flex items-center gap-2 text-status-success font-semibold">
+          <span class="material-symbols-outlined text-base">payments</span>
+          <span>To'lov mehmonxonada to'lanadi</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-600 font-medium">
+          <span class="material-symbols-outlined text-base text-secondary">free_cancellation</span>
+          <span>Kelish kunigacha bepul bekor qilish imkoni</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
