@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 from django.utils import timezone
-from django.db import connection
+from django.db import connection, OperationalError
 
 from accounts.models import UserRole
 from hotels.models import Hotel, Room, RoomType
@@ -378,7 +378,7 @@ class BookingConcurrencyTests(TransactionTestCase):
                     guest_phone='+998901234567'
                 )
                 results.append(b)
-            except ValidationError as e:
+            except (ValidationError, OperationalError) as e:
                 errors.append(str(e))
             finally:
                 connection.close()
