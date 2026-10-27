@@ -1,0 +1,36 @@
+{% if messages %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 mb-2">
+  <div class="space-y-3">
+    {% for message in messages %}
+      <div class="flex items-center justify-between p-4 rounded-2xl shadow-sm border transition-all animate-pop
+        {% if message.tags == 'success' %}
+          bg-emerald-50 border-emerald-200 text-emerald-900
+        {% elif message.tags == 'danger' or message.tags == 'error' %}
+          bg-rose-50 border-rose-200 text-rose-900
+        {% elif message.tags == 'warning' %}
+          bg-amber-50 border-amber-200 text-amber-900
+        {% else %}
+          bg-sky-50 border-sky-200 text-sky-900
+        {% endif %}">
+        <div class="flex items-center gap-3">
+          {% if message.tags == 'success' %}
+            <span class="material-symbols-outlined text-emerald-600 text-2xl">check_circle</span>
+          {% elif message.tags == 'danger' or message.tags == 'error' %}
+            <span class="material-symbols-outlined text-rose-600 text-2xl">error</span>
+          {% elif message.tags == 'warning' %}
+            <span class="material-symbols-outlined text-amber-600 text-2xl">warning</span>
+          {% else %}
+            <span class="material-symbols-outlined text-sky-600 text-2xl">info</span>
+          {% endif %}
+          <div class="font-body-md text-sm md:text-base font-medium">
+            {{ message }}
+          </div>
+        </div>
+        <button type="button" onclick="this.parentElement.remove()" class="p-1 rounded-lg hover:bg-black/5 text-gray-500 hover:text-gray-700 transition-colors">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

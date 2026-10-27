@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+
+<html lang="uz"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Manrope:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "status-success": "#10B981", "on-error": "#ffffff", "on-background": "#001d32", "navy-deep": "#0A1D30", "on-primary-container": "#7a92b0", "on-secondary-fixed-variant": "#004d62", "tertiary-container": "#3a2400", "teal-light": "#E0F2FE", "tertiary-fixed": "#ffddb2", "on-surface": "#001d32", "surface-tint": "#49607c", "on-primary-fixed": "#011d35", "surface-ivory": "#F8FAFC", "secondary-fixed": "#b9eaff", "on-secondary-fixed": "#001f29", "tertiary-fixed-dim": "#f8bc63", "primary": "#00152a", "surface-container": "#e3efff", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#291800", "primary-container": "#102a43", "status-error": "#EF4444", "amber-soft": "#FEF3C7", "error": "#ba1a1a", "outline-variant": "#c3c6ce", "tertiary": "#1f1100", "surface-dim": "#c1ddfb", "border-subtle": "#E2E8F0", "outline": "#74777e", "background": "#f7f9ff", "surface-bright": "#f7f9ff", "inverse-on-surface": "#e8f2ff", "on-secondary": "#ffffff", "on-secondary-container": "#00647d", "surface-container-lowest": "#ffffff", "error-container": "#ffdad6", "surface": "#f7f9ff", "surface-container-low": "#edf4ff", "primary-fixed": "#d1e4ff", "on-primary": "#ffffff", "on-tertiary-fixed-variant": "#624000", "status-warning": "#F59E0B", "inverse-primary": "#b0c9e8", "on-primary-fixed-variant": "#314863", "surface-white": "#FFFFFF", "on-tertiary-container": "#bb8633", "on-surface-variant": "#43474d", "secondary": "#006781", "surface-variant": "#cee5ff", "secondary-container": "#8fdfff", "surface-container-highest": "#cee5ff", "primary-fixed-dim": "#b0c9e8", "surface-container-high": "#d8eaff", "inverse-surface": "#16334a", "secondary-fixed-dim": "#81d1f0" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-2xl": "3rem", "gutter-sm": "1rem", "gutter": "1.5rem", "space-2xs": "0.25rem", "space-xl": "2rem", "space-3xl": "4.5rem", "margin": "2rem", "margin-sm": "1rem", "space-md": "1rem", "space-sm": "0.75rem", "space-xs": "0.5rem", "space-lg": "1.5rem" }, "fontFamily": { "headline-lg-mobile": ["Manrope"], "price-md": ["Manrope"], "label-lg": ["Inter"], "headline-lg": ["Manrope"], "body-md": ["Inter"], "body-sm": ["Inter"], "price-lg": ["Manrope"], "headline-sm": ["Manrope"], "display": ["Manrope"], "body-lg": ["Inter"], "headline-md": ["Manrope"], "display-mobile": ["Manrope"], "title": ["Manrope"], "label-md": ["Inter"] }, "fontSize": { "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}], "price-md": ["18px", {"lineHeight": "24px", "fontWeight": "700"}], "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}], "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "700"}], "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}], "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}], "price-lg": ["24px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "800"}], "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}], "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}], "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}], "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}], "display-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800"}], "title": ["18px", {"lineHeight": "26px", "fontWeight": "600"}], "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-7xl mx-auto px-margin-sm lg:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-sm"><img alt="StayBook Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WHDAwsoqrjB5U6QFPGsjnED1NqpUNuQ7Mcxm_QB5oCwTXXUO7eiiuzq_83LlgDGT8bjYEPL1AACAOBwjPlBjfvzz28SOgcRjugVVQUDfl6uFsqmoen-J01of-H3sHJ2qcezk2pSW3P-GTW81IDG7VCNghBn_PmIiYN1v4vnuqyxWNNmH1NnyRmT-sBcIxV384wNRTMZ37Hp1zvewIM3vOlD3ukU8zDNzN3WVqlNkMikUOr7em6-u61Rw0"/><span class="font-title text-title text-primary tracking-tight font-bold">StayBook</span></div><nav class="hidden md:flex items-center gap-space-xs p-space-2xs bg-surface-container-low rounded-xl" data-active-classes="bg-primary-container text-on-primary font-label-lg text-label-lg rounded-xl shadow-sm"><a class="px-space-md py-space-xs font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors rounded-xl" data-path="bosh-sahifa" href="#">Bosh sahifa</a><a class="px-space-md py-space-xs font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors rounded-xl" data-path="mehmonxonalar" href="#">Mehmonxonalar</a><a class="px-space-md py-space-xs font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors rounded-xl" data-path="biz-haqimizda" href="#">Biz haqimizda</a><a class="px-space-md py-space-xs font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors rounded-xl" data-path="bog-lanish" href="#">Bog'lanish</a></nav><div class="flex items-center gap-space-sm"><button aria-label="Bildirishnomalar" class="p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-full transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">notifications</span></button><div class="hidden sm:flex items-center gap-space-xs pl-space-xs"><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="kabinetim" href="#">Kabinetim</a><span class="text-outline-variant text-body-sm">|</span><a class="font-label-lg text-label-lg text-secondary hover:text-on-secondary-container transition-colors" data-path="kirish" href="#">Kirish</a></div><div class="pl-space-2xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-surface-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRJTY2L00jufgY6XvMAAiFiWRCjPlM5gt5j0In-EJMSxK4pzj9gHZ6iVAFMFlLLVOGHqYucjdS_s6p36PfRjIPFFOODlh5BPhlgqMUl2k2eSahgoQYP4tiTjj3UmRWd3tfIIkOB-eNH45a7ynL3F_q3g6SRTuPyBvsAqr0IbMGIURyXPALhlpgHYnGRcDXyYJH5ZMswTHV968dA1qkdpxEPTlDyZFXguLPU9iUh-g72WZ-4TiV3FRQVA"/></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-20rem)]"><div class="flex flex-col w-full">
+<!-- Xabarnoma / Muvaffaqiyatli ma'lumot qatori -->
+<div class="w-full bg-teal-light py-space-xs px-margin-sm lg:px-margin">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-space-sm text-secondary font-label-lg text-label-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Kafolatlangan eng maqbul narx — StayBook orqali bron qilinganda komissiya olinmaydi</span>
+</div>
+<div class="hidden md:flex items-center gap-space-md text-on-surface-variant font-body-sm text-body-sm">
+<span>To'lov mehmonxonada</span>
+<span>•</span>
+<span>24/7 o'zbek tilida qo'llab-quvvatlash</span>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-margin-sm lg:px-margin py-space-lg w-full">
+<!-- 1. Breadcrumb & Hotel Header -->
+<nav aria-label="Yo'nalish" class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant mb-space-sm">
+<a class="hover:text-secondary transition-colors" href="#">Bosh sahifa</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-secondary transition-colors" href="#">Toshkent</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-secondary transition-colors" href="#">Mehmonxonalar</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Silk Road Grand Hotel</span>
+</nav>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md pb-space-lg">
+<div class="flex flex-col gap-space-2xs">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="inline-flex items-center gap-0.5 px-space-xs py-0.5 rounded-full bg-amber-soft text-on-tertiary-container font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px] text-status-warning" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px] text-status-warning" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px] text-status-warning" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px] text-status-warning" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px] text-status-warning" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 font-bold">5 yulduzli lyuks</span>
+</span>
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-surface-container-high text-secondary font-label-md text-label-md font-semibold">
+            Tavsiya etilgan
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mt-space-2xs">
+          Silk Road Grand Hotel
+        </h1>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-space-2xs font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-secondary">location_on</span>
+<span>Toshkent shahri, Yakkasaroy tumani, Bobur ko'chasi 45-uy</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">near_me</span>
+<span>Markazdan 1.2 km</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">flight</span>
+<span>Aeroportgacha 4.5 km</span>
+</div>
+</div>
+</div>
+<!-- Rating summary badge -->
+<div class="flex items-center gap-space-sm bg-surface-container-low p-space-sm rounded-xl">
+<div class="text-right">
+<div class="font-title text-title text-primary font-bold">4.9 / 5 — A'lo</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">128 ta haqiqiy mehmon sharhi</div>
+</div>
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center font-bold shadow-md">
+          4.9
+        </div>
+</div>
+</div>
+<!-- 2. Suratlar galereyasi (Grid Gallery) -->
+<div class="relative mb-space-2xl">
+<div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-space-xs rounded-2xl overflow-hidden shadow-md">
+<!-- Asosiy katta surat -->
+<div class="md:col-span-2 md:row-span-2 relative group cursor-pointer overflow-hidden min-h-[340px] md:min-h-[480px]">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Magnificent exterior facade and opulent warm entrance lobby of the Silk Road Grand Hotel in Tashkent Uzbekistan at dusk, glowing ambient golden lantern illumination, grand architectural marble columns, pristine luxury hospitality aesthetic, photorealistic 8k" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3tgT8xQSD7btNIoYAJuP1KzolKWdfBl86XamGvToBponbadE95mSsar_iv7fJeJ5bTCkGvRAw4n5OUlNn2O0J268z9OQQKpkFXH6amDqCJlIFVyvvbX-Wwloz-FdZGor1QC-GOzyZvMKfHQw6U-nfcILpqOJHD9H70TH7ZmzW17NopGma5lS4GpMurGFDD53YpxpZgZPbYJSfC_zfeWrlnUjCVVDWXtsEgR47jdi3_fDlxIH64ngE3w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
+<div class="absolute bottom-space-md left-space-md text-on-primary">
+<span class="inline-block px-space-xs py-0.5 rounded bg-primary/80 backdrop-blur font-label-md text-label-md mb-1">Mehmonxona fasadi va xolli</span>
+<p class="font-headline-sm text-headline-sm text-on-primary drop-shadow">Silk Road Grand Hotel — Sharqona hashamat</p>
+</div>
+</div>
+<!-- O'ng tomondagi 4 ta surat -->
+<div class="relative group cursor-pointer overflow-hidden min-h-[170px] md:min-h-[235px]">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Interior of a luxury Deluxe Double bedroom in Tashkent with a plush king-size bed, rich wood finishes, soft silk pillows in blue and amber accents, elegant ambient bedside lamps, crisp pristine linens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGjcOSmSq5KN_kJ5ToLerY6fmSqiggDvkClhbr1S7QutqmYWQrKDhrMTwXGlt_aiXdlJlNDqb_P8nFUsLELiNmVK9QqSKpTqrwS-IPKToBaecdWLQBnolSjvgczreSKM9qtqEER1U7jrxph179DJT41UstrRnjd31tNYYFLx5-1ggyTAXyxfQWEFN2KqFYanUMcww13nQyojnol8khZ5b0WJpVr_YcXVHv5ypwweEAWROvhVmTuUrp-A"/>
+<span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-primary/70 backdrop-blur font-label-md text-label-md text-on-primary">Deluxe xona</span>
+</div>
+<div class="relative group cursor-pointer overflow-hidden min-h-[170px] md:min-h-[235px]">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Gourmet breakfast buffet restaurant with fresh fruits, traditional Uzbek pastries, hot dishes, elegant white tablecloths and high floor-to-ceiling sunlit windows in a boutique hotel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZp20yf6HH_UEIRrDK06JRzUnp7gky8b-PZoGVjB3vFwzATGaIDE3DxBMSbuM4yeW5gRnTnlKVa_JgDKSMcANJIbp9XHw8gK4mbyMVMWSkDrzFRPpnAC7-fGeLAvTMRdk3lDH-hIMVLOBx6WjJCvJU9L8Pj5Vjq7yHTWm_fnQEmul7w4sZuIjKBhJ6-a1_IHP3RC_dNcSQTi6qfh7DhbdI8Zn0ssd45ijdQ_ok6WbLPQzl1NTuggr4PQ"/>
+<span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-primary/70 backdrop-blur font-label-md text-label-md text-on-primary">Restoran & Nonushta</span>
+</div>
+<div class="relative group cursor-pointer overflow-hidden min-h-[170px] md:min-h-[235px]">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Indoor heated turquoise luxury swimming pool surrounded by smooth limestone tiles, comfortable loungers, serene blue reflections and quiet boutique spa atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsN4FE_J020_7YS_j6jHY34hb_C6VIAb-kDiUH05tBZITEZLCYUG1TpOD00bRM910GseXdBr2PZp3zWaTjR9RZx_IZLn9P8BCEqODITfOig7k9UaHp-qhpNtTzb317I3NQGcL-BGn6wexfG9_3MKlRutW2qNwCRCuKzmFb9jmMQSYH56unz4BgmknChDMBGK86Z5RU0dGmrwAxb6-hPNeI0A2Egeei3GjZtbmt9ZGYTfnZhMXDvcHJmQ"/>
+<span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-primary/70 backdrop-blur font-label-md text-label-md text-on-primary">Suzish havzasi & Spa</span>
+</div>
+<div class="relative group cursor-pointer overflow-hidden min-h-[170px] md:min-h-[235px]">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Polished 24/7 reception check-in desk with friendly professional concierge in navy uniform, modern geometric wood paneling, warm ambient pendant lights and brass ornaments" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClXasW6xuXaAp9qXcR6JNLfK7vNM7OtahgphmHSJsG-KmrAvBIzKuuTfKDuoFBuXcME_pdADNezVCc5WqOCLqYUd7MTclvThhewqBsLXDCctixiKLslDnJWvj7t57ALlaZqddqaBD9sheNlm7UhTWhYsAWoS4m9YOP2JPgluZskcsdIX1cQe7HVc0b-2OCpAKtvOVlCc0NApcoB3pVCVmkb0bEv-wJdLqiymI3Oh1otml2ghb6mJcY3g"/>
+<span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-primary/70 backdrop-blur font-label-md text-label-md text-on-primary">Qabulxona 24/7</span>
+</div>
+</div>
+<!-- Barcha suratlarni ko'rish tugmasi -->
+<button class="absolute bottom-space-md right-space-md inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-xl bg-surface-white/95 text-primary hover:bg-surface-white shadow-lg backdrop-blur font-label-lg text-label-lg transition-transform hover:scale-105">
+<span class="material-symbols-outlined text-[20px]">photo_library</span>
+<span>Barcha 24 ta suratni ko'rish</span>
+</button>
+</div>
+<!-- 3 & 4. Asosiy mazmun va Sticky Booking paneli (Grid) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- CHAP TOMON USTUNI (8 ustun) -->
+<div class="lg:col-span-8 flex flex-col gap-space-2xl">
+<!-- Mehmonxona haqida -->
+<section class="bg-surface-white p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-primary">Mehmonxona haqida</h2>
+<span class="text-secondary font-label-md text-label-md bg-teal-light px-space-xs py-0.5 rounded-full font-semibold">Toshkent markazida</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            «Silk Road Grand Hotel» — Toshkent shahrining sokin va nufuzli Yakkasaroy tumanida joylashgan 5 yulduzli zamonaviy mehmonxona. Biz o'zbek milliy mehmondo'stligini Yevropa xizmat ko'rsatish standartlari bilan uyg'unlashtirgan holda sizga unutilmas dam olish muhitini taqdim etamiz. Mehmonxona Amir Temur xiyoboni, Bobur bog'i va xalqaro aeroportga juda yaqin masofada qulay joylashgan.
+          </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Mehmonlarimiz uchun kun bo'yi ishlaydigan restoran, boy shved stoli nonushtasi, panoramali fitnes zali hamda sokin dam olish uchun yopiq va ochiq suzish havzalari xizmat qiladi. Biznes safarlar va oilaviy sayohatlar uchun ideal tanlov.
+          </p>
+<!-- Mashhur qulayliklar -->
+<div class="pt-space-xs">
+<h3 class="font-title text-title text-primary mb-space-sm">Mashhur qulayliklar</h3>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-space-sm">
+<div class="flex items-center gap-space-xs p-space-xs rounded-xl bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[22px]">wifi</span>
+<span class="font-label-lg text-label-lg">Bepul tezyurar Wi-Fi</span>
+</div>
+<div class="flex items-center gap-space-xs p-space-xs rounded-xl bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[22px]">restaurant</span>
+<span class="font-label-lg text-label-lg">Mazali shved stoli</span>
+</div>
+<div class="flex items-center gap-space-xs p-space-xs rounded-xl bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[22px]">pool</span>
+<span class="font-label-lg text-label-lg">Hovuz va SPA majmuasi</span>
+</div>
+<div class="flex items-center gap-space-xs p-space-xs rounded-xl bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[22px]">local_parking</span>
+<span class="font-label-lg text-label-lg">Qo'riqlanadigan avtoturargoh</span>
+</div>
+<div class="flex items-center gap-space-xs p-space-xs rounded-xl bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[22px]">support_agent</span>
+<span class="font-label-lg text-label-lg">24/7 qabulxona xizmati</span>
+</div>
+<div class="flex items-center gap-space-xs p-space-xs rounded-xl bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[22px]">airport_shuttle</span>
+<span class="font-label-lg text-label-lg">Aeroport transferi</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Mavjud xonalar (Room Selection) -->
+<section class="flex flex-col gap-space-md" id="xonalar">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Mavjud xonalar</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">10-noyabr — 13-noyabr (3 kecha, 2 mehmon) uchun narxlar</p>
+</div>
+<span class="text-secondary font-label-md text-label-md bg-teal-light px-space-sm py-1 rounded-full w-fit">
+              3 xil turdagi xona bo'sh
+            </span>
+</div>
+<!-- Xona 1: Deluxe ikki kishilik xona (Tanlangan holatda) -->
+<div class="bg-surface-white rounded-2xl shadow-md overflow-hidden relative transition-all duration-300">
+<!-- Active Ribbon -->
+<div class="bg-secondary text-on-secondary px-space-md py-1 font-label-md text-label-md flex items-center justify-between">
+<span class="flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                Siz tanlagan asosiy xona varianti
+              </span>
+<span class="hidden sm:inline font-normal">Eng mashhur tanlov</span>
+</div>
+<div class="p-space-lg grid grid-cols-1 md:grid-cols-12 gap-space-lg items-center">
+<!-- Xona surati -->
+<div class="md:col-span-4 flex flex-col gap-space-xs">
+<div class="relative rounded-xl overflow-hidden aspect-video md:aspect-[4/3]">
+<img class="w-full h-full object-cover" data-alt="Deluxe double room in Tashkent boutique hotel featuring spacious warm layout, contemporary wood headboard, king-size bed with crisp white duvet, large balcony windows overlooking green courtyard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMzl7aNCIJRZVaCaH90SGgQITKGWoLH7AsjYxpoSXIk9pWWPu0rRTcxIFrBMjxhdFw8S68GQA3jJncoCQI_tEnsjpZG4wIwI0OfvEuo31136-YubuvZBTQ9nZvSVI0sxI3xHJtw-S59Gm6XddFKp-q8TXBq3CS1VLRHGdfWvd-GT2iph4_Mkj8XFE0Q-m8228NgiSpEU7pzGD0cz6UGoDv8Squyj9go0953REs90nVoleRoQj4vo-iQg"/>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-primary/80 text-on-primary font-label-md text-label-md">32 m²</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-md text-label-md px-1">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">king_bed</span> 1 katta karavot</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">balcony</span> Balkonli</span>
+</div>
+</div>
+<!-- Xona ma'lumotlari -->
+<div class="md:col-span-5 flex flex-col gap-space-xs">
+<h3 class="font-title text-title text-primary font-bold">Deluxe ikki kishilik xona</h3>
+<div class="flex flex-wrap gap-x-space-sm gap-y-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">check</span> Shved stoli nonushtasi</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">check</span> Konditsioner & Mini-bar</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">check</span> Smart TV & Kofe mashinasi</span>
+</div>
+<div class="pt-space-xs flex flex-col gap-1">
+<div class="inline-flex items-center gap-1 text-status-success font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">event_available</span>
+<span>Bepul bekor qilish: 8-noyabrgacha</span>
+</div>
+<div class="inline-flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+<span>Oldindan to'lov shart emas (Mehmonxonada to'lash)</span>
+</div>
+</div>
+</div>
+<!-- Xona narxi va CTA -->
+<div class="md:col-span-3 flex flex-col md:items-end justify-between gap-space-sm bg-surface-container-low p-space-md rounded-xl">
+<div class="md:text-right">
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Bir kecha uchun:</span>
+<span class="font-price-lg text-price-lg text-primary block">450 000 so'm</span>
+<span class="font-label-md text-label-md text-on-surface-variant">3 kecha uchun: <strong class="text-primary font-bold">1 350 000 so'm</strong></span>
+</div>
+<button class="w-full py-space-xs px-space-md rounded-xl bg-primary hover:bg-navy-deep text-on-primary font-label-lg text-label-lg font-semibold shadow transition-all flex items-center justify-center gap-space-2xs">
+<span class="material-symbols-outlined text-[18px]">done</span>
+<span>Tanlangan</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Xona 2: Standart bir kishilik xona -->
+<div class="bg-surface-white rounded-2xl shadow-sm overflow-hidden transition-all duration-300">
+<div class="p-space-lg grid grid-cols-1 md:grid-cols-12 gap-space-lg items-center">
+<div class="md:col-span-4 flex flex-col gap-space-xs">
+<div class="relative rounded-xl overflow-hidden aspect-video md:aspect-[4/3]">
+<img class="w-full h-full object-cover" data-alt="Standard single cozy hotel room in Uzbekistan with comfortable single bed, work desk, warm reading lamp, compact pristine en-suite modern shower bathroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCP71Opan3g_gTndh3-JWD8qioLZVsEMQsvos8IaarF2M6JEcjfY-rsotWrHXgWg7ZNc-qcqKTWo5ekwBttlQ5Zkzbya2ZPUCzXJ8eEZ1wy4fozN6RGDQ0YBpmp4PqzHJ9Gqxodfp-vrt_15esPtRmZjPxOu83uNjD9g_QlZQ6pVUJCqhyEPpg7ZNptsKoDRYGSJck97fegv6L9xIKtBJLsXIIgmqLU0A4JDHz0tmrNDPdm2pzgxHTuA"/>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-primary/80 text-on-primary font-label-md text-label-md">22 m²</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-md text-label-md px-1">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">single_bed</span> 1 kishilik karavot</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">desk</span> Ish stoli</span>
+</div>
+</div>
+<div class="md:col-span-5 flex flex-col gap-space-xs">
+<h3 class="font-title text-title text-primary font-bold">Standart bir kishilik xona</h3>
+<div class="flex flex-wrap gap-x-space-sm gap-y-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">check</span> Mazali nonushta</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">check</span> Yuqori tezlikdagi Wi-Fi</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">check</span> Dush va kosmetika vositalari</span>
+</div>
+<div class="pt-space-xs flex flex-col gap-1">
+<div class="inline-flex items-center gap-1 text-status-success font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">event_available</span>
+<span>Bepul bekor qilish mavjud</span>
+</div>
+<div class="inline-flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+<span>Mehmonxonada to'lash imkoni</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-3 flex flex-col md:items-end justify-between gap-space-sm bg-surface-container-low p-space-md rounded-xl">
+<div class="md:text-right">
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Bir kecha uchun:</span>
+<span class="font-price-lg text-price-lg text-primary block">320 000 so'm</span>
+<span class="font-label-md text-label-md text-on-surface-variant">3 kecha uchun: <strong class="text-primary font-bold">960 000 so'm</strong></span>
+</div>
+<button class="w-full py-space-xs px-space-md rounded-xl bg-surface-white hover:bg-surface-container text-secondary font-label-lg text-label-lg font-semibold transition-all flex items-center justify-center gap-space-2xs">
+<span>Ushbu xonani tanlash</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Xona 3: Prezident lyuks xonasi -->
+<div class="bg-surface-white rounded-2xl shadow-sm overflow-hidden transition-all duration-300">
+<div class="p-space-lg grid grid-cols-1 md:grid-cols-12 gap-space-lg items-center">
+<div class="md:col-span-4 flex flex-col gap-space-xs">
+<div class="relative rounded-xl overflow-hidden aspect-video md:aspect-[4/3]">
+<img class="w-full h-full object-cover" data-alt="Presidential luxury suite in Tashkent with panoramic skyline city view, expansive living lounge area, Italian velvet sofa, master bedroom with super king bed and marble spa bathroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApbfk43FyQACE_lTuK5gGngLGgJIWAduzYF0BA2hXZW4H_I-bXuVJNE_0jnuoRdV02DzZk6tZXsHruhAI2Ir2nu1ZLpsXMqcL3ItAtKNYJeJJ5r2WPJKrE7mQSl0CvIlmlomuoozzH53MHR0nYRSSoqcNj6GgN4EsCcWaihJNovoXezMv25ocknTRB8V4RI_RswRWzE0hV41cxsulEmeLLw_rCFjrNIO0Ef5aXZ_4X00cB4cSEKHOqkw"/>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-primary/80 text-on-primary font-label-md text-label-md">65 m²</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-md text-label-md px-1">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">king_bed</span> Super King karavot</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">apartment</span> Panorama ko'rinish</span>
+</div>
+</div>
+<div class="md:col-span-5 flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<h3 class="font-title text-title text-primary font-bold">Prezident lyuks xonasi</h3>
+<span class="bg-amber-soft text-on-tertiary-container font-label-md text-label-md px-2 py-0.5 rounded-full font-bold">VIP</span>
+</div>
+<div class="flex flex-wrap gap-x-space-sm gap-y-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">check</span> VIP nonushta xonada</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">check</span> Jakuzi va marmar hammom</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">check</span> Bepul aeroport transferi</span>
+</div>
+<div class="pt-space-xs flex flex-col gap-1">
+<div class="inline-flex items-center gap-1 text-status-success font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">event_available</span>
+<span>Bepul bekor qilish: 9-noyabrgacha</span>
+</div>
+<div class="inline-flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+<span>Mehmonxonada to'lash</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-3 flex flex-col md:items-end justify-between gap-space-sm bg-surface-container-low p-space-md rounded-xl">
+<div class="md:text-right">
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Bir kecha uchun:</span>
+<span class="font-price-lg text-price-lg text-primary block">1 200 000 so'm</span>
+<span class="font-label-md text-label-md text-on-surface-variant">3 kecha uchun: <strong class="text-primary font-bold">3 600 000 so'm</strong></span>
+</div>
+<button class="w-full py-space-xs px-space-md rounded-xl bg-surface-white hover:bg-surface-container text-secondary font-label-lg text-label-lg font-semibold transition-all flex items-center justify-center gap-space-2xs">
+<span>Ushbu xonani tanlash</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Mehmonxona joylashuvi xaritasi -->
+<section class="bg-surface-white p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-primary">Joylashuv va atrofi</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Yakkasaroy tumani, Toshkent</span>
+</div>
+<div class="w-full h-72 rounded-xl overflow-hidden relative shadow-inner bg-cover bg-center flex items-center justify-center" data-location="Silk Road Grand Hotel, Bobur street, Tashkent, Uzbekistan" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0pERCKQCO7EKLgdlLI5hxBH5g83WX7WvHonUgUZAwph3yLlSYDMc5Nus9HK_4LhCTT4Q23fFIrm_hggtJoBWKvJDE9beOPEFVZSvACh-9778_JI2PUFxyJ8UmJZqdIBVHmht-OlD0Gvy7sTTmC58OBeXd2vIxdhoZSGd6oAPlkMbikKR3f69obucVyLZIiHbfxLEUFB5cRprzGVZvz4vklTH-WIxFX9j49banQy8u9eiXlncQrf-kkw')">
+<div class="p-space-sm bg-surface-white/95 rounded-xl shadow-lg flex items-center gap-space-sm max-w-sm backdrop-blur">
+<span class="material-symbols-outlined text-secondary text-[28px]">pin_drop</span>
+<div>
+<p class="font-label-lg text-label-lg text-primary font-bold">Silk Road Grand Hotel</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bobur ko'chasi 45-uy, Toshkent</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2 p-space-xs rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[18px]">park</span>
+<span>Bobur bog'i — 400 m</span>
+</div>
+<div class="flex items-center gap-2 p-space-xs rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[18px]">local_cafe</span>
+<span>Kafelar va choyxonalar — 150 m</span>
+</div>
+<div class="flex items-center gap-2 p-space-xs rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[18px]">subway</span>
+<span>«Kosmonavtlar» metro — 1.1 km</span>
+</div>
+</div>
+</section>
+<!-- Mehmonxona qoidalari -->
+<section class="bg-surface-white p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-md">
+<h2 class="font-headline-sm text-headline-sm text-primary">Mehmonxona qoidalari</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex items-start gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[24px]">login</span>
+<div>
+<span class="font-title text-title text-primary block">Kirish (Check-in)</span>
+<span class="font-body-md text-body-md text-on-surface-variant">14:00 dan boshlab</span>
+<p class="font-body-sm text-body-sm text-outline mt-1">Erta kirish imkoniyati bandlikka qarab belgilanadi</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[24px]">logout</span>
+<div>
+<span class="font-title text-title text-primary block">Chiqish (Check-out)</span>
+<span class="font-body-md text-body-md text-on-surface-variant">12:00 gacha</span>
+<p class="font-body-sm text-body-sm text-outline mt-1">Kechki chiqish qo'shimcha kelishuv asosida</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-error text-[24px]">smoke_free</span>
+<div>
+<span class="font-title text-title text-primary block">Chekish siyosati</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Xonalarda qat'iyan taqiqlanadi</span>
+<p class="font-body-sm text-body-sm text-outline mt-1">Bino tashqarisida maxsus chekish hududlari mavjud</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[24px]">pets</span>
+<div>
+<span class="font-title text-title text-primary block">Uy hayvonlari</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Ruxsat berilmaydi</span>
+<p class="font-body-sm text-body-sm text-outline mt-1">Xizmat ko'rsatuvchi itlar bundan mustasno</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Mehmonlar sharhlari -->
+<section class="bg-surface-white p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Mehmonlar sharhlari</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">128 ta haqiqiy va tasdiqlangan fikrlar</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex flex-col text-right">
+<span class="font-title text-title font-bold text-primary">4.9 / 5</span>
+<span class="font-label-md text-label-md text-status-success font-semibold">«A'lo darajada»</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-primary text-on-primary font-bold flex items-center justify-center font-headline-sm text-headline-sm">
+                4.9
+              </div>
+</div>
+</div>
+<!-- Reyting progress turlari -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm p-space-md rounded-xl bg-surface-container-low">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-md text-label-md text-on-surface">
+<span>Tozalik va orastalik</span>
+<span class="font-bold">5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-md text-label-md text-on-surface">
+<span>Xodimlar mehmondo'stligi</span>
+<span class="font-bold">4.9</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 98%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-md text-label-md text-on-surface">
+<span>Qulay joylashuv</span>
+<span class="font-bold">4.8</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 96%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-md text-label-md text-on-surface">
+<span>Narx va sifat mutanosibligi</span>
+<span class="font-bold">4.9</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 98%"></div>
+</div>
+</div>
+</div>
+<!-- Namuna sharhlar -->
+<div class="flex flex-col gap-space-md">
+<!-- Sharh 1 -->
+<div class="p-space-md rounded-xl bg-surface-bright flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary font-title text-title">
+                    A
+                  </div>
+<div>
+<span class="font-title text-title text-primary block">Azizbek Rahimov</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Toshkent, O'zbekiston • Oktyabr 2026</span>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-teal-light text-secondary font-bold font-label-md text-label-md">5.0</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                «Xizmat ko'rsatish juda yuqori darajada! Xonalar nihoyatda toza va shinam, nonushtadagi milliy pishiriqlar esa juda mazali edi. Keyingi safar Toshkentga kelganimda albatta yana shu yerda qolaman.»
+              </p>
+</div>
+<!-- Sharh 2 -->
+<div class="p-space-md rounded-xl bg-surface-bright flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary font-title text-title">
+                    D
+                  </div>
+<div>
+<span class="font-title text-title text-primary block">Dilnoza Qosimova</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Samarqand, O'zbekiston • Sentyabr 2026</span>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-teal-light text-secondary font-bold font-label-md text-label-md">4.8</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                «Deluxe xonasidagi qulayliklar ajoyib. Ayniqsa suzish havzasi va spa xizmatlari dam olishimizni yanada mazmunli qildi. Xodimlar doimo tabassum bilan yordam berishga tayyor.»
+              </p>
+</div>
+</div>
+</section>
+</div>
+<!-- O'NG TOMON STICKY BUYURTMA XULOSASI (4 ustun) -->
+<div class="lg:col-span-4 sticky top-24">
+<div class="bg-surface-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
+<!-- Card Header -->
+<div class="bg-primary text-on-primary p-space-md">
+<span class="font-label-md text-label-md text-secondary-fixed block uppercase tracking-wider">Buyurtma xulosasi</span>
+<h3 class="font-title text-title text-on-primary mt-1 font-bold">Silk Road Grand Hotel</h3>
+<span class="font-body-sm text-body-sm text-surface-dim flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-amber-soft" style="font-variation-settings: 'FILL' 1;">star</span>
+              5 yulduzli lyuks mehmonxona
+            </span>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<!-- Sanalar va mehmonlar bloki -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm rounded-xl">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">calendar_month</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">Tanlangan sanalar:</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">10-noyabr 2026 — 13-noyabr 2026</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-teal-light text-secondary font-label-md text-label-md font-bold">
+                  3 kecha
+                </span>
+</div>
+<div class="pt-space-2xs flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">group</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">Mehmonlar soni:</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">2 kishi (1 ta xona)</span>
+</div>
+</div>
+</div>
+<!-- Tanlangan xona turi -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant">Tanlangan xona:</span>
+<div class="flex items-center justify-between">
+<span class="font-title text-title text-primary font-bold">Deluxe ikki kishilik xona</span>
+<span class="material-symbols-outlined text-status-success text-[20px]">check_circle</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Shved stoli nonushtasi kiritilgan</span>
+</div>
+<!-- Narx hisob-kitobi (Breakdown) -->
+<div class="flex flex-col gap-space-xs pt-space-xs font-body-sm text-body-sm">
+<div class="flex justify-between text-on-surface-variant">
+<span>1 kecha uchun narx</span>
+<span>450 000 so'm</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Kechalar soni</span>
+<span>3 kecha</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Solinadigan soliqlar va yig'imlar</span>
+<span class="text-status-success font-semibold">0 so'm (Kiritilgan)</span>
+</div>
+<!-- Jami Narx -->
+<div class="pt-space-xs mt-space-2xs flex items-baseline justify-between">
+<span class="font-title text-title text-primary font-bold">Jami to'lov:</span>
+<span class="font-price-lg text-price-lg text-primary font-extrabold">1 350 000 so'm</span>
+</div>
+</div>
+<!-- To'lov shartlari eslatmasi -->
+<div class="p-space-sm rounded-xl bg-teal-light text-secondary flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[20px] mt-0.5">verified_user</span>
+<div class="font-label-md text-label-md">
+<span class="font-bold block">Xavfsiz va qulay bron:</span>
+<span>To'lov mehmonxonaga yetib kelganda amalga oshiriladi. Oldindan to'lov yoki karta talab qilinmaydi.</span>
+</div>
+</div>
+<!-- Asosiy harakat tugmasi (CTA) -->
+<a class="w-full py-space-md px-space-lg rounded-xl bg-primary hover:bg-navy-deep text-on-primary font-label-lg text-label-lg font-bold shadow-lg text-center transition-all duration-200 transform active:scale-95 flex items-center justify-center gap-space-xs" data-path="bron-qilish" href="#">
+<span>Bron qilishga o'tish</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+<!-- Qo'shimcha kafolatlar -->
+<div class="flex flex-col gap-1 text-center font-body-sm text-body-sm text-outline">
+<span class="flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-status-success">check</span>
+                8-noyabrgacha bepul bekor qilish imkoni
+              </span>
+<span>Tezkor SMS va elektron pochta orqali tasdiqlash</span>
+</div>
+</div>
+</div>
+<!-- Aloqa yordami kartasi -->
+<div class="mt-space-md p-space-md bg-surface-white rounded-2xl shadow-sm flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">headset_mic</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-primary font-bold block">Savollaringiz bormi?</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Qo'ng'iroq qiling: <a class="text-secondary font-bold hover:underline" href="tel:+998712000000">+998 71 200 00 00</a></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main><footer class="w-full bg-surface-container-low mt-space-3xl"><div class="max-w-7xl mx-auto px-margin-sm lg:px-margin pt-space-3xl pb-space-2xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl"><div class="lg:col-span-2 flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><img alt="StayBook Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WHDAwsoqrjB5U6QFPGsjnED1NqpUNuQ7Mcxm_QB5oCwTXXUO7eiiuzq_83LlgDGT8bjYEPL1AACAOBwjPlBjfvzz28SOgcRjugVVQUDfl6uFsqmoen-J01of-H3sHJ2qcezk2pSW3P-GTW81IDG7VCNghBn_PmIiYN1v4vnuqyxWNNmH1NnyRmT-sBcIxV384wNRTMZ37Hp1zvewIM3vOlD3ukU8zDNzN3WVqlNkMikUOr7em6-u61Rw0"/><span class="font-title text-title text-primary tracking-tight font-bold">StayBook</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">StayBook — O'zbekiston bo'ylab eng yaxshi mehmonxona va dam olish maskanlari. Qulay qidiruv, kafolatlangan band qilish va do'stona mehmondo'stlik.</p><div class="flex items-center gap-space-sm pt-space-xs"><a aria-label="Aloqa markazi" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-secondary hover:text-on-secondary transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">chat</span></a><a aria-label="Telegram kanal" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-secondary hover:text-on-secondary transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">send</span></a><a aria-label="Email yuborish" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-secondary hover:text-on-secondary transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">mail</span></a></div></div><div class="flex flex-col gap-space-sm"><span class="font-title text-title text-on-surface">Tezkor havolalar</span><div class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" data-path="bosh-sahifa" href="#">Bosh sahifa</a><a class="hover:text-on-surface transition-colors" data-path="mehmonxonalar" href="#">Mehmonxonalar</a><a class="hover:text-on-surface transition-colors" data-path="biz-haqimizda" href="#">Biz haqimizda</a><a class="hover:text-on-surface transition-colors" data-path="bog-lanish" href="#">Bog'lanish</a><a class="hover:text-on-surface transition-colors" data-path="kabinetim" href="#">Mening bronlarim</a></div></div><div class="flex flex-col gap-space-sm"><span class="font-title text-title text-on-surface">Mashhur shaharlar</span><div class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" href="#">Toshkent mehmonxonalari</a><a class="hover:text-on-surface transition-colors" href="#">Samarqand mehmonxonalari</a><a class="hover:text-on-surface transition-colors" href="#">Buxoro mehmonxonalari</a><a class="hover:text-on-surface transition-colors" href="#">Xiva mehmonxonalari</a><a class="hover:text-on-surface transition-colors" href="#">Zomin dam olish maskanlari</a></div></div><div class="flex flex-col gap-space-sm"><span class="font-title text-title text-on-surface">Mijozlarni qo'llab-quvvatlash</span><div class="flex flex-col gap-space-sm font-body-sm text-body-sm text-on-surface-variant"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">call</span><span class="font-label-lg text-label-lg text-on-surface">+998 71 200 00 00</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">mail</span><span>info@staybook.uz</span></div><div class="flex items-start gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary mt-0.5">schedule</span><span>24/7 uzluksiz xizmat ko'rsatish markazi</span></div></div></div></div><div class="mt-space-2xl pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-body-sm text-body-sm"><p>© 2026 StayBook. Barcha huquqlar himoyalangan.</p><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" href="#">Foydalanish shartlari</a><a class="hover:text-on-surface transition-colors" href="#">Maxfiylik siyosati</a><a class="hover:text-on-surface transition-colors" href="#">Ommaviy oferta</a></div></div></div></footer></body></html>

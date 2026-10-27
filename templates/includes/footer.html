@@ -1,0 +1,84 @@
+{% load static %}
+<footer class="w-full bg-surface-container-low mt-auto border-t border-border-subtle">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <!-- Col 1: About & Social -->
+      <div class="lg:col-span-2 flex flex-col gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-sm">
+            <span class="material-symbols-outlined text-2xl text-secondary-fixed">hotel</span>
+          </div>
+          <span class="font-display text-2xl text-primary tracking-tight font-extrabold">StayBook</span>
+        </div>
+        <p class="font-body-md text-sm text-on-surface-variant max-w-sm leading-relaxed">
+          StayBook — O'zbekiston bo'ylab eng yaxshi mehmonxona va dam olish maskanlari. Qulay qidiruv, kafolatlangan band qilish va do'stona mehmondo'stlik.
+        </p>
+        <div class="flex items-center gap-3 pt-2">
+          <a aria-label="Aloqa markazi" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-secondary hover:text-white transition-colors" href="tel:+998712000000">
+            <span class="material-symbols-outlined text-xl">chat</span>
+          </a>
+          <a aria-label="Telegram" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-secondary hover:text-white transition-colors" href="https://t.me/" target="_blank">
+            <span class="material-symbols-outlined text-xl">send</span>
+          </a>
+          <a aria-label="Email yuborish" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-secondary hover:text-white transition-colors" href="mailto:info@staybook.uz">
+            <span class="material-symbols-outlined text-xl">mail</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Quick links -->
+      <div class="flex flex-col gap-3">
+        <span class="font-title text-base font-bold text-on-surface">Tezkor havolalar</span>
+        <div class="flex flex-col gap-2 font-body-sm text-sm text-on-surface-variant">
+          <a class="hover:text-primary transition-colors" href="{% url 'home' %}">Bosh sahifa</a>
+          <a class="hover:text-primary transition-colors" href="{% url 'hotels:list' %}">Mehmonxonalar</a>
+          <a class="hover:text-primary transition-colors" href="{% url 'bookings:list' %}">Mening bronlarim</a>
+          {% if user.is_authenticated and user.is_manager %}
+            <a class="hover:text-secondary font-semibold transition-colors" href="{% url 'dashboard:overview' %}">Menejer paneli</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Col 3: Popular cities -->
+      <div class="flex flex-col gap-3">
+        <span class="font-title text-base font-bold text-on-surface">Mashhur shaharlar</span>
+        <div class="flex flex-col gap-2 font-body-sm text-sm text-on-surface-variant">
+          <a class="hover:text-primary transition-colors" href="{% url 'hotels:list' %}?city=Toshkent">Toshkent</a>
+          <a class="hover:text-primary transition-colors" href="{% url 'hotels:list' %}?city=Samarqand">Samarqand</a>
+          <a class="hover:text-primary transition-colors" href="{% url 'hotels:list' %}?city=Buxoro">Buxoro</a>
+          <a class="hover:text-primary transition-colors" href="{% url 'hotels:list' %}?city=Xiva">Xiva</a>
+          <a class="hover:text-primary transition-colors" href="{% url 'hotels:list' %}?city=Zomin">Zomin</a>
+        </div>
+      </div>
+
+      <!-- Col 4: Support & Contact -->
+      <div class="flex flex-col gap-3">
+        <span class="font-title text-base font-bold text-on-surface">Qo'llab-quvvatlash</span>
+        <div class="flex flex-col gap-3 font-body-sm text-sm text-on-surface-variant">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-lg text-secondary">call</span>
+            <span class="font-semibold text-on-surface">+998 71 200 00 00</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-lg text-secondary">mail</span>
+            <span>info@staybook.uz</span>
+          </div>
+          <div class="flex items-start gap-2 text-xs text-gray-500">
+            <span class="material-symbols-outlined text-base text-secondary mt-0.5">schedule</span>
+            <span>24/7 uzluksiz xizmat ko'rsatish markazi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom subfooter -->
+    <div class="mt-12 pt-8 border-t border-border-subtle flex flex-col md:flex-row items-center justify-between gap-4 text-on-surface-variant font-body-sm text-xs">
+      <p>© 2026 StayBook. Barcha huquqlar himoyalangan.</p>
+      <div class="flex items-center gap-6">
+        <a class="hover:text-on-surface transition-colors" href="#">Foydalanish shartlari</a>
+        <a class="hover:text-on-surface transition-colors" href="#">Maxfiylik siyosati</a>
+        <a class="hover:text-on-surface transition-colors" href="#">Ommaviy oferta</a>
+      </div>
+    </div>
+  </div>
+</footer>

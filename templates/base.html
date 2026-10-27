@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz" class="h-full">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}StayBook — O'zbekiston bo'ylab mehmonxonalarni bron qilish{% endblock %}</title>
+
+  <!-- Google Fonts: Manrope, Inter, Material Symbols Outlined -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,400,0..1,0&display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00152a",
+            "primary-container": "#102a43",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#7a92b0",
+            "navy-deep": "#0A1D30",
+            "secondary": "#006781",
+            "secondary-container": "#8fdfff",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#00647d",
+            "secondary-fixed": "#b9eaff",
+            "on-secondary-fixed-variant": "#004d62",
+            "surface": "#f7f9ff",
+            "surface-ivory": "#F8FAFC",
+            "surface-white": "#FFFFFF",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#edf4ff",
+            "surface-container": "#e3efff",
+            "surface-container-high": "#d8eaff",
+            "surface-container-highest": "#cee5ff",
+            "on-surface": "#001d32",
+            "on-surface-variant": "#43474d",
+            "surface-variant": "#cee5ff",
+            "amber-soft": "#FEF3C7",
+            "teal-light": "#E0F2FE",
+            "border-subtle": "#E2E8F0",
+            "outline": "#74777e",
+            "outline-variant": "#c3c6ce",
+            "status-success": "#10B981",
+            "status-error": "#EF4444",
+            "status-warning": "#F59E0B",
+            "tertiary": "#1f1100",
+            "tertiary-container": "#3a2400",
+            "on-tertiary-container": "#bb8633"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "md": "0.5rem",
+            "lg": "0.75rem",
+            "xl": "1rem",
+            "2xl": "1.25rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-2xs": "0.25rem",
+            "space-xs": "0.5rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "space-2xl": "3rem",
+            "space-3xl": "4.5rem",
+            "gutter": "1.5rem",
+            "gutter-sm": "1rem",
+            "margin": "2rem",
+            "margin-sm": "1rem"
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"],
+            "headline-lg": ["Manrope", "sans-serif"],
+            "headline-md": ["Manrope", "sans-serif"],
+            "headline-sm": ["Manrope", "sans-serif"],
+            "title": ["Manrope", "sans-serif"],
+            "price-lg": ["Manrope", "sans-serif"],
+            "price-md": ["Manrope", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "label-lg": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Project Styles -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen">
+  <!-- Navbar -->
+  {% include 'includes/navbar.html' %}
+
+  <!-- Flash Messages -->
+  <div class="pt-20">
+    {% include 'includes/messages.html' %}
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-1 w-full">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  {% include 'includes/footer.html' %}
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
