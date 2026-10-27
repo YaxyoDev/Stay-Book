@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def dashboard_overview(request):
+    return HttpResponse("Dashboard overview")
+
+def dashboard_hotels(request):
+    return HttpResponse("Dashboard hotels")
+
+def dashboard_rooms(request):
+    return HttpResponse("Dashboard rooms")
+
+def dashboard_bookings(request):
+    return HttpResponse("Dashboard bookings")

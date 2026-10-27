@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def hotel_list_view(request):
+    return HttpResponse("Hotels list")
+
+def hotel_detail_view(request, slug):
+    return HttpResponse(f"Hotel detail: {slug}")
+
+def room_detail_view(request, pk):
+    return HttpResponse(f"Room detail: {pk}")

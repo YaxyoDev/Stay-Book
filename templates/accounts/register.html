@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ro'yxatdan o'tish — StayBook{% endblock %}
+
+{% block content %}
+<div class="min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-surface">
+  <div class="max-w-xl w-full">
+    <!-- Card Container -->
+    <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-border-subtle animate-pop">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-secondary text-white mb-4 shadow-md">
+          <span class="material-symbols-outlined text-3xl">person_add</span>
+        </div>
+        <h1 class="font-headline-md text-2xl font-bold text-primary tracking-tight">StayBook akkauntini ochish</h1>
+        <p class="font-body-sm text-sm text-on-surface-variant mt-2">
+          Mehmonxonalarni tezkor va oson bron qilish uchun profilingizni yarating.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form method="post" action="{% url 'accounts:register' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" class="space-y-4">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+          <div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm">
+            {% for error in form.non_field_errors %}
+              <p class="flex items-center gap-2"><span class="material-symbols-outlined text-base">error</span> {{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.first_name.id_for_label }}">
+              {{ form.first_name.label }}
+            </label>
+            {{ form.first_name }}
+            {% if form.first_name.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.first_name.errors.0 }}</p>
+            {% endif %}
+          </div>
+
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.last_name.id_for_label }}">
+              {{ form.last_name.label }}
+            </label>
+            {{ form.last_name }}
+            {% if form.last_name.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.last_name.errors.0 }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.username.id_for_label }}">
+            {{ form.username.label }} *
+          </label>
+          {{ form.username }}
+          {% if form.username.errors %}
+            <p class="text-xs text-rose-600 mt-1">{{ form.username.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.email.id_for_label }}">
+              {{ form.email.label }} *
+            </label>
+            {{ form.email }}
+            {% if form.email.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.email.errors.0 }}</p>
+            {% endif %}
+          </div>
+
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.phone.id_for_label }}">
+              {{ form.phone.label }}
+            </label>
+            {{ form.phone }}
+            {% if form.phone.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.phone.errors.0 }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.password.id_for_label }}">
+              {{ form.password.label }} *
+            </label>
+            {{ form.password }}
+            {% if form.password.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.password.errors.0 }}</p>
+            {% endif %}
+          </div>
+
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.confirm_password.id_for_label }}">
+              {{ form.confirm_password.label }} *
+            </label>
+            {{ form.confirm_password }}
+            {% if form.confirm_password.errors %}
+              <p class="text-xs text-rose-600 mt-1">{{ form.confirm_password.errors.0 }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="pt-3">
+          <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-secondary hover:bg-on-secondary-container text-white font-label-lg text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group active:scale-[0.99]">
+            <span>Ro'yxatdan o'tish</span>
+            <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-0.5">arrow_forward</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Bottom link -->
+      <div class="mt-8 pt-6 border-t border-border-subtle text-center">
+        <p class="text-sm text-gray-600">
+          Allaqachon akkauntingiz bormi?
+          <a href="{% url 'accounts:login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" class="font-semibold text-secondary hover:text-on-secondary-container transition-colors ml-1">
+            Kirish
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

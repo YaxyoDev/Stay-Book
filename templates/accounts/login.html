@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Kirish — StayBook{% endblock %}
+
+{% block content %}
+<div class="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-surface">
+  <div class="max-w-md w-full">
+    <!-- Card Container -->
+    <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-border-subtle animate-pop">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary text-white mb-4 shadow-md">
+          <span class="material-symbols-outlined text-3xl text-secondary-fixed">lock_open</span>
+        </div>
+        <h1 class="font-headline-md text-2xl font-bold text-primary tracking-tight">StayBook'ga xush kelibsiz</h1>
+        <p class="font-body-sm text-sm text-on-surface-variant mt-2">
+          Mehmonxona bronlarini boshqarish yoki kabinetingizga kirish uchun tizimga kiring.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form method="post" action="{% url 'accounts:login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" class="space-y-5">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+          <div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm">
+            {% for error in form.non_field_errors %}
+              <p class="flex items-center gap-2"><span class="material-symbols-outlined text-base">error</span> {{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div>
+          <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5" for="{{ form.username.id_for_label }}">
+            Foydalanuvchi nomi yoki Email
+          </label>
+          {{ form.username }}
+          {% if form.username.errors %}
+            <p class="text-xs text-rose-600 mt-1">{{ form.username.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider" for="{{ form.password.id_for_label }}">
+              Parol
+            </label>
+          </div>
+          {{ form.password }}
+          {% if form.password.errors %}
+            <p class="text-xs text-rose-600 mt-1">{{ form.password.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-primary-container hover:bg-navy-deep text-white font-label-lg text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group active:scale-[0.99]">
+          <span>Tizimga kirish</span>
+          <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-0.5">login</span>
+        </button>
+      </form>
+
+      <!-- Bottom link -->
+      <div class="mt-8 pt-6 border-t border-border-subtle text-center">
+        <p class="text-sm text-gray-600">
+          Akkauntingiz yo'qmi?
+          <a href="{% url 'accounts:register' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" class="font-semibold text-secondary hover:text-on-secondary-container transition-colors ml-1">
+            Ro'yxatdan o'tish
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+from django.urls import path
+from . import views
+
+app_name = 'hotels'
+
+urlpatterns = [
+    path('', views.hotel_list_view, name='list'),
+    path('<slug:slug>/', views.hotel_detail_view, name='detail'),
+    path('rooms/<int:pk>/', views.room_detail_view, name='room_detail'),
+]
