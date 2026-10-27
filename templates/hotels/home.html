@@ -1,0 +1,409 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}StayBook — Sayohatingiz uchun eng yaxshi mehmonxonani toping{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full">
+  <!-- HERO SECTION WITH INTEGRATED SEARCH WIDGET -->
+  <section class="relative w-full -mt-20 pt-32 pb-20 md:pb-28 overflow-hidden bg-navy-deep">
+    <!-- Ambient Backdrop Artistry -->
+    <div class="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-30" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChnOhHfgUqtLv9pANshhE7fxcVZ9dwmR0PhVA12IfimD-NXP8UBVFuQfSDdkcM2Nfz0Zd-t0Bpi-2vEj1UfRTILqcCVBjMvFeBOnZivzliRkbgRCyHBIHJ5uBgu-NkDi7fkNshfw289AiR7PExFTVEEwMQCLUc1omsCWothkBO2i-7wSZdYVlmlPsMdqhoD-45MwK8uJp0sNxeVHMpa78J7rtRkaYBjmd9AAqnWZaIKOTcT3UORia29g');">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-deep/90 via-navy-deep/80 to-navy-deep"></div>
+    <div class="absolute -top-32 right-1/4 w-96 h-96 rounded-full bg-secondary/20 blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+      <!-- Trust Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-surface-container text-xs font-semibold mb-6 shadow-sm border border-white/10">
+        <span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+        <span>O'zbekistonda tasdiqlangan mehmonxonalar tizimi</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white max-w-4xl tracking-tight leading-tight font-extrabold">
+        Sayohatingiz uchun eng yaxshi mehmonxonani toping
+      </h1>
+
+      <!-- Supporting Subtitle -->
+      <p class="mt-4 font-body-lg text-base sm:text-lg text-surface-variant max-w-2xl leading-relaxed">
+        O'zbekistonning tarixiy shaharlari bo'ylab qulay, ishonchli va hamyonbop mehmonxonalarni ortiqcha to'lovlarsiz bron qiling.
+      </p>
+
+      <!-- SEARCH WIDGET (Card Elevation Tier 2) -->
+      <div class="w-full mt-10 p-4 sm:p-5 rounded-3xl bg-white shadow-2xl text-left border border-border-subtle">
+        <form action="{% url 'hotels:list' %}" method="GET" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
+          <!-- Shahar yoki mehmonxona -->
+          <div class="lg:col-span-4 p-3 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors group">
+            <label class="block font-label-md text-xs text-on-surface-variant uppercase tracking-wider mb-1 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-secondary text-lg">location_on</span>
+              Shahar yoki mehmonxona
+            </label>
+            <input class="w-full bg-transparent font-title text-sm sm:text-base text-on-surface font-bold focus:outline-none placeholder:text-gray-400" name="q" placeholder="Qayerga borasiz? (Toshkent, Samarqand...)" type="text"/>
+          </div>
+
+          <!-- Kirish sanasi -->
+          <div class="lg:col-span-2 p-3 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors">
+            <label class="block font-label-md text-xs text-on-surface-variant uppercase tracking-wider mb-1 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-secondary text-lg">calendar_today</span>
+              Kirish sanasi
+            </label>
+            <input class="w-full bg-transparent font-title text-sm text-on-surface font-semibold focus:outline-none cursor-pointer" name="check_in" type="date" value="{{ today_str }}"/>
+          </div>
+
+          <!-- Chiqish sanasi -->
+          <div class="lg:col-span-2 p-3 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors">
+            <label class="block font-label-md text-xs text-on-surface-variant uppercase tracking-wider mb-1 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-secondary text-lg">event_repeat</span>
+              Chiqish sanasi
+            </label>
+            <input class="w-full bg-transparent font-title text-sm text-on-surface font-semibold focus:outline-none cursor-pointer" name="check_out" type="date"/>
+          </div>
+
+          <!-- Mehmonlar -->
+          <div class="lg:col-span-2 p-3 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors">
+            <label class="block font-label-md text-xs text-on-surface-variant uppercase tracking-wider mb-1 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-secondary text-lg">group</span>
+              Mehmonlar
+            </label>
+            <select name="adults" class="w-full bg-transparent font-title text-sm text-on-surface font-semibold focus:outline-none cursor-pointer">
+              <option value="1">1 mehmon</option>
+              <option value="2" selected>2 mehmon</option>
+              <option value="3">3 mehmon</option>
+              <option value="4">4 mehmon</option>
+              <option value="5">5+ mehmon</option>
+            </select>
+          </div>
+
+          <!-- Qidirish CTA Button -->
+          <div class="lg:col-span-2 h-full flex items-center">
+            <button class="w-full h-14 md:h-[58px] px-6 rounded-2xl bg-secondary hover:bg-primary-container text-white font-label-lg text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group active:scale-[0.98]" type="submit">
+              <span class="material-symbols-outlined text-xl transition-transform group-hover:scale-110">search</span>
+              <span>Qidirish</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Quick Tags -->
+        <div class="mt-3 pt-2 px-2 flex flex-wrap items-center gap-2 text-on-surface-variant font-body-sm text-xs">
+          <span class="font-bold text-primary">Tezkor tanlov:</span>
+          <a class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface transition-colors font-medium" href="{% url 'hotels:list' %}?city=Toshkent">Toshkent</a>
+          <a class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface transition-colors font-medium" href="{% url 'hotels:list' %}?city=Samarqand">Samarqand</a>
+          <a class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface transition-colors font-medium" href="{% url 'hotels:list' %}?city=Buxoro">Buxoro</a>
+          <a class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface transition-colors font-medium" href="{% url 'hotels:list' %}?city=Xiva">Xiva</a>
+          <a class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface transition-colors font-medium" href="{% url 'hotels:list' %}?city=Zomin">Zomin tog'lari</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MASHHUR YO'NALISHLAR (DESTINATIONS) -->
+  <section class="w-full py-16 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="font-label-lg text-xs font-bold text-secondary tracking-widest uppercase">Sayyohlik xaritasi</span>
+          <h2 class="font-headline-lg text-2xl sm:text-3xl text-on-surface mt-1 font-bold">Mashhur yo'nalishlar</h2>
+          <p class="font-body-md text-sm sm:text-base text-on-surface-variant mt-1">O'zbekistonning eng go'zal va qadimiy shaharlaridagi mehmonxonalar to'plami</p>
+        </div>
+        <a class="inline-flex items-center gap-1 font-label-lg text-sm text-secondary hover:text-on-secondary-container font-semibold transition-colors" href="{% url 'hotels:list' %}">
+          <span>Barcha mehmonxonalarni ko'rish</span>
+          <span class="material-symbols-outlined text-lg">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Bento-like grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        {% for city in cities_data %}
+        <a class="group relative h-96 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-end p-6" href="{% url 'hotels:list' %}?city={{ city.name }}">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('{{ city.img }}');"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/40 to-transparent"></div>
+          <div class="relative z-10">
+            <span class="inline-block px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-white font-label-md text-xs mb-2 font-medium">
+              {{ city.count }} mehmonxona
+            </span>
+            <h3 class="font-headline-md text-xl font-bold text-white group-hover:text-secondary-fixed transition-colors">{{ city.name }}</h3>
+            <p class="font-body-sm text-xs text-surface-variant line-clamp-1 mt-1">{{ city.desc }}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- TAVSIYA ETILGAN MEHMONXONALAR (FEATURED HOTELS) -->
+  <section class="w-full py-16 bg-surface-container-low border-y border-border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="font-label-lg text-xs font-bold text-secondary tracking-widest uppercase">Saralangan maskanlar</span>
+          <h2 class="font-headline-lg text-2xl sm:text-3xl text-on-surface mt-1 font-bold">Eng mashhur mehmonxonalar</h2>
+          <p class="font-body-md text-sm sm:text-base text-on-surface-variant mt-1">Mehmonlarimiz tomonidan yuqori baholangan qulay maskanlar</p>
+        </div>
+        <a class="inline-flex items-center gap-1 font-label-lg text-sm text-secondary hover:text-on-secondary-container font-semibold transition-colors" href="{% url 'hotels:list' %}">
+          <span>Katalogga o'tish</span>
+          <span class="material-symbols-outlined text-lg">arrow_forward</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for hotel in featured_hotels %}
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border-subtle flex flex-col group">
+          <!-- Image -->
+          <div class="relative h-60 overflow-hidden bg-surface-container">
+            {% if hotel.primary_image %}
+              <img src="{{ hotel.primary_image.image.url }}" alt="{{ hotel.name }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+            {% else %}
+              <div class="w-full h-full flex items-center justify-center bg-surface-container text-gray-400">
+                <span class="material-symbols-outlined text-5xl">hotel</span>
+              </div>
+            {% endif %}
+            <div class="absolute top-4 left-4 flex items-center gap-2">
+              <span class="px-3 py-1 rounded-full bg-navy-deep/80 backdrop-blur-md text-white font-label-md text-xs font-semibold">
+                {{ hotel.city }}
+              </span>
+              <span class="px-2.5 py-1 rounded-full bg-amber-soft text-amber-900 font-label-md text-xs font-bold flex items-center gap-1 shadow-sm">
+                <span class="material-symbols-outlined text-sm text-status-warning" style="font-variation-settings: 'FILL' 1;">star</span>
+                {{ hotel.stars }} yulduzli
+              </span>
+            </div>
+            {% if hotel.avg_review_rating %}
+            <div class="absolute bottom-4 right-4 px-2.5 py-1 rounded-xl bg-white/95 backdrop-blur-md text-primary font-bold text-xs shadow-md flex items-center gap-1">
+              <span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span>{{ hotel.avg_review_rating }}</span>
+              <span class="text-gray-400 font-normal">({{ hotel.review_total }})</span>
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Body -->
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-headline-md text-lg font-bold text-primary group-hover:text-secondary transition-colors">
+                <a href="{{ hotel.get_absolute_url }}">{{ hotel.name }}</a>
+              </h3>
+              <p class="font-body-sm text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+                <span class="material-symbols-outlined text-sm text-secondary">location_on</span>
+                <span class="truncate">{{ hotel.address }}</span>
+              </p>
+              <p class="font-body-sm text-xs text-gray-600 line-clamp-2 mt-2 leading-relaxed">
+                {{ hotel.description }}
+              </p>
+
+              <!-- Amenities Pills -->
+              <div class="flex flex-wrap gap-1.5 mt-4">
+                {% for amenity in hotel.amenities.all|slice:":3" %}
+                  <span class="px-2.5 py-0.5 rounded-full bg-surface-container text-xs text-gray-700 font-medium">
+                    {{ amenity.name }}
+                  </span>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Footer block with price and CTA -->
+            <div class="pt-5 mt-5 border-t border-border-subtle flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-500 block">Boshlang'ich narx</span>
+                {% if hotel.min_room_price %}
+                  <span class="font-price-md text-base font-extrabold text-primary">
+                    {{ hotel.min_room_price|floatformat:0 }} so'm
+                  </span>
+                  <span class="text-xs text-gray-500 font-normal">/ kecha</span>
+                {% else %}
+                  <span class="text-xs text-gray-400">Narx so'rovi</span>
+                {% endif %}
+              </div>
+              <a href="{{ hotel.get_absolute_url }}" class="px-4 py-2 rounded-xl bg-primary-container hover:bg-navy-deep text-white font-label-lg text-xs font-semibold shadow-sm transition-all duration-200 flex items-center gap-1">
+                <span>Batafsil</span>
+                <span class="material-symbols-outlined text-base">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="col-span-3 text-center py-12">
+          <p class="text-gray-500">Hozircha mehmonxonalar mavjud emas.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- NEGA AYNAN STAYBOOK? (VALUE PROPS) -->
+  <section class="w-full py-16 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="font-label-lg text-xs font-bold text-secondary tracking-widest uppercase">Bizning ustunliklarimiz</span>
+        <h2 class="font-headline-lg text-2xl sm:text-3xl text-on-surface mt-1 font-bold">Nega aynan StayBook?</h2>
+        <p class="font-body-md text-sm sm:text-base text-on-surface-variant mt-2">
+          Sayohatingiz har bir soniyasini xotirjam va zavqli o'tkazishingiz uchun qulayliklar yaratamiz
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="p-6 rounded-3xl bg-white border border-border-subtle shadow-sm flex flex-col items-center text-center">
+          <div class="w-14 h-14 rounded-2xl bg-teal-light text-secondary flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-2xl">verified</span>
+          </div>
+          <h4 class="font-title text-base font-bold text-primary">100% Kafolatlangan bron</h4>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+            Tanlagan xonangiz bazamizda zudlik bilan band qilinadi va hech qanday ortiqcha chalkashlik yuz bermaydi.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-white border border-border-subtle shadow-sm flex flex-col items-center text-center">
+          <div class="w-14 h-14 rounded-2xl bg-amber-soft text-amber-900 flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-2xl">payments</span>
+          </div>
+          <h4 class="font-title text-base font-bold text-primary">To'lov mehmonxonada</h4>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+            Oldindan karta ma'lumotlarini kiritish yoki to'lov qilish shart emas. To'lovni joyiga yetib borganda amalga oshirasiz.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-white border border-border-subtle shadow-sm flex flex-col items-center text-center">
+          <div class="w-14 h-14 rounded-2xl bg-surface-container text-primary flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-2xl">support_agent</span>
+          </div>
+          <h4 class="font-title text-base font-bold text-primary">24/7 Qo'llab-quvvatlash</h4>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+            O'zbek tilidagi do'stona operatorlarimiz har qanday savolingizga haftaning istalgan kunida javob beradi.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-white border border-border-subtle shadow-sm flex flex-col items-center text-center">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-800 flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-2xl">credit_card_off</span>
+          </div>
+          <h4 class="font-title text-base font-bold text-primary">Yashirin to'lovlarsiz</h4>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+            Saytda ko'rsatilgan narx yakuniy hisoblanadi. Hech qanday qo'shimcha komissiya yoki ustama olinmaydi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section class="w-full py-16 bg-surface-container-low border-t border-border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-12">
+        <div>
+          <span class="font-label-lg text-xs font-bold text-secondary tracking-widest uppercase">Haqiqiy tajribalar</span>
+          <h2 class="font-headline-lg text-2xl sm:text-3xl text-on-surface mt-1 font-bold">Mehmonlarimiz StayBook haqida</h2>
+        </div>
+        <div class="mt-4 md:mt-0 flex items-center gap-3">
+          <div class="flex -space-x-2">
+            <div class="w-9 h-9 rounded-full bg-primary-container text-white flex items-center justify-center text-xs font-bold ring-2 ring-white">AZ</div>
+            <div class="w-9 h-9 rounded-full bg-secondary text-white flex items-center justify-center text-xs font-bold ring-2 ring-white">NM</div>
+            <div class="w-9 h-9 rounded-full bg-status-success text-white flex items-center justify-center text-xs font-bold ring-2 ring-white">SK</div>
+          </div>
+          <span class="font-body-sm text-xs sm:text-sm text-on-surface-variant font-medium">10 000+ baxtli sayohatchi</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-3xl bg-white shadow-sm border border-border-subtle flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-500 mb-4">
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
+            <p class="font-body-md text-sm text-on-surface italic mb-6">
+              "Samarqandga oilaviy safarimiz uchun mehmonxona tanladik. Narxlar saytda qanday ko'rsatilgan bo'lsa, joyida shunday to'ladik. Hech qanday chalkashliklar bo'lmadi."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-border-subtle">
+            <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary text-sm">
+              AN
+            </div>
+            <div>
+              <h4 class="font-label-lg text-sm text-on-surface font-bold">Anvar Narzullayev</h4>
+              <p class="text-xs text-gray-500">Toshkent, O'zbekiston</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-white shadow-sm border border-border-subtle flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-500 mb-4">
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
+            <p class="font-body-md text-sm text-on-surface italic mb-6">
+              "Xivadagi tarixiy mehmonxonada qoldik. Ichan Qal'aning qoq markazida joylashgan ekan. Qidiruv tizimidagi qulay filtrlar tufayli 3 daqiqada mos joyni topdim."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-border-subtle">
+            <div class="w-10 h-10 rounded-full bg-teal-light flex items-center justify-center font-bold text-secondary text-sm">
+              DM
+            </div>
+            <div>
+              <h4 class="font-label-lg text-sm text-on-surface font-bold">Dilnoza Murodova</h4>
+              <p class="text-xs text-gray-500">Farg'ona, O'zbekiston</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-white shadow-sm border border-border-subtle flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-500 mb-4">
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
+            <p class="font-body-md text-sm text-on-surface italic mb-6">
+              "Xizmat ko'rsatish juda tezkor. Bron qilishda kartadan pul yechib olinmasligi va bekor qilishning qulayligi bizga erkinlik berdi. Tavsiya qilaman!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-border-subtle">
+            <div class="w-10 h-10 rounded-full bg-amber-soft flex items-center justify-center font-bold text-amber-900 text-sm">
+              JS
+            </div>
+            <div>
+              <h4 class="font-label-lg text-sm text-on-surface font-bold">Jamshid Saidov</h4>
+              <p class="text-xs text-gray-500">Buxoro, O'zbekiston</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="w-full py-16 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative rounded-3xl bg-primary-container p-8 sm:p-12 md:p-16 overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-secondary/30 blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-teal-light/10 blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full bg-white/10 text-secondary-fixed text-xs font-semibold inline-block mb-3 border border-white/10">
+            Oson va Ishonchli
+          </span>
+          <h2 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-white leading-tight font-extrabold">
+            Keyingi unutilmas sayohatingizni bugun rejalashtiring
+          </h2>
+          <p class="font-body-md text-sm sm:text-base text-on-primary-container mt-3">
+            StayBook orqali O'zbekiston bo'ylab o'zingizga ma'qul mehmonxonani toping va bir necha bosqichda band qiling.
+          </p>
+        </div>
+
+        <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+          <a class="w-full sm:w-auto px-8 py-4 rounded-xl bg-secondary hover:bg-on-secondary-container text-white font-label-lg text-sm font-semibold shadow-lg text-center transition-all" href="{% url 'hotels:list' %}">
+            Mehmonxonalarni ko'rish
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,335 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mehmonxonalar katalogi va qidiruv — StayBook{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full">
+  <!-- Top Search Parameters Bar & Breadcrumb Section -->
+  <section class="w-full bg-surface-container-low py-6 border-b border-border-subtle shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-4">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-on-surface-variant font-label-md text-xs">
+        <a class="hover:text-primary transition-colors flex items-center gap-1" href="{% url 'home' %}">
+          <span class="material-symbols-outlined text-sm">home</span>
+          <span>Bosh sahifa</span>
+        </a>
+        <span class="text-outline-variant">/</span>
+        <span class="text-on-surface font-semibold">Mehmonxonalar</span>
+        {% if current_city %}
+          <span class="text-outline-variant">/</span>
+          <span class="text-secondary font-semibold">{{ current_city }}</span>
+        {% endif %}
+      </nav>
+
+      <!-- Quick Search Bar -->
+      <div class="bg-white rounded-2xl shadow-sm p-3 sm:p-4 border border-border-subtle">
+        <form action="{% url 'hotels:list' %}" method="GET" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
+          <!-- City / Q -->
+          <div class="lg:col-span-4 flex items-center gap-2 bg-surface-container-low px-4 py-2.5 rounded-xl">
+            <span class="material-symbols-outlined text-secondary text-xl">location_on</span>
+            <div class="flex flex-col min-w-0 flex-1">
+              <label class="text-on-surface-variant font-label-md text-[10px] uppercase tracking-wider" for="search-city">Shahar / Mehmonxona</label>
+              <input class="bg-transparent font-title text-sm text-on-surface font-bold focus:outline-none truncate w-full" id="search-city" name="city" placeholder="Barcha shaharlar" type="text" value="{{ current_city }}"/>
+            </div>
+          </div>
+
+          <!-- Dates Range -->
+          <div class="lg:col-span-2 flex items-center gap-2 bg-surface-container-low px-4 py-2.5 rounded-xl">
+            <span class="material-symbols-outlined text-secondary text-xl">calendar_today</span>
+            <div class="flex flex-col min-w-0 flex-1">
+              <label class="text-on-surface-variant font-label-md text-[10px] uppercase tracking-wider">Kirish sanasi</label>
+              <input class="bg-transparent font-title text-xs text-on-surface font-semibold focus:outline-none w-full" name="check_in" type="date" value="{{ check_in }}"/>
+            </div>
+          </div>
+
+          <div class="lg:col-span-2 flex items-center gap-2 bg-surface-container-low px-4 py-2.5 rounded-xl">
+            <span class="material-symbols-outlined text-secondary text-xl">event_repeat</span>
+            <div class="flex flex-col min-w-0 flex-1">
+              <label class="text-on-surface-variant font-label-md text-[10px] uppercase tracking-wider">Chiqish sanasi</label>
+              <input class="bg-transparent font-title text-xs text-on-surface font-semibold focus:outline-none w-full" name="check_out" type="date" value="{{ check_out }}"/>
+            </div>
+          </div>
+
+          <!-- Guests -->
+          <div class="lg:col-span-2 flex items-center gap-2 bg-surface-container-low px-4 py-2.5 rounded-xl">
+            <span class="material-symbols-outlined text-secondary text-xl">group</span>
+            <div class="flex flex-col min-w-0 flex-1">
+              <label class="text-on-surface-variant font-label-md text-[10px] uppercase tracking-wider">Kattalar</label>
+              <select name="adults" class="bg-transparent font-title text-xs text-on-surface font-semibold focus:outline-none">
+                <option value="1" {% if adults == 1 %}selected{% endif %}>1 mehmon</option>
+                <option value="2" {% if adults == 2 %}selected{% endif %}>2 mehmon</option>
+                <option value="3" {% if adults == 3 %}selected{% endif %}>3 mehmon</option>
+                <option value="4" {% if adults == 4 %}selected{% endif %}>4 mehmon</option>
+                <option value="5" {% if adults >= 5 %}selected{% endif %}>5+ mehmon</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="lg:col-span-2">
+            <button class="w-full h-11 bg-primary-container hover:bg-navy-deep text-white font-label-lg text-xs font-semibold rounded-xl shadow-sm transition-all duration-200 flex items-center justify-center gap-2" type="submit">
+              <span class="material-symbols-outlined text-lg">search</span>
+              <span>Yangilash</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Quick Meta Summary -->
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+        <p class="font-body-sm text-xs text-on-surface-variant">
+          <strong class="text-on-surface font-bold mr-1">{% if current_city %}{{ current_city }}:{% else %}Katalog:{% endif %}</strong>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed-variant font-bold text-xs mr-2">
+            {{ total_hotels }} ta mehmonxona
+          </span>
+          topildi {% if dates_valid %}• {{ check_in }} dan {{ check_out }} gacha{% endif %}
+        </p>
+        <span class="text-secondary font-label-md text-xs flex items-center gap-1 font-semibold">
+          <span class="material-symbols-outlined text-sm text-status-success font-bold">verified</span>
+          Barcha narxlar soliq va yig'imlarni o'z ichiga oladi
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout (Sidebar + Results) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- LEFT SIDEBAR FILTERS -->
+      <aside class="lg:col-span-4 xl:col-span-3 flex flex-col gap-6">
+        <form method="GET" action="{% url 'hotels:list' %}" class="bg-white rounded-3xl shadow-sm p-6 border border-border-subtle flex flex-col gap-6">
+          <div class="flex items-center justify-between pb-3 border-b border-border-subtle">
+            <h2 class="font-title text-base font-bold text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-xl">tune</span>
+              Filtrlash
+            </h2>
+            <a class="text-secondary hover:text-on-secondary-container font-label-md text-xs underline underline-offset-4 transition-colors" href="{% url 'hotels:list' %}">
+              Tozalash
+            </a>
+          </div>
+
+          <!-- Keep dates/guests in GET -->
+          <input type="hidden" name="check_in" value="{{ check_in }}"/>
+          <input type="hidden" name="check_out" value="{{ check_out }}"/>
+          <input type="hidden" name="adults" value="{{ adults }}"/>
+          <input type="hidden" name="children" value="{{ children }}"/>
+          <input type="hidden" name="sort" value="{{ sort_by }}"/>
+
+          <!-- City Select -->
+          <div>
+            <label class="block font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">Shahar</label>
+            <select name="city" class="w-full px-3 py-2.5 rounded-xl border border-border-subtle bg-white text-xs font-medium focus:ring-2 focus:ring-secondary/20 focus:border-secondary">
+              <option value="">Barcha shaharlar</option>
+              {% for c in available_cities %}
+                <option value="{{ c }}" {% if current_city == c %}selected{% endif %}>{{ c }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Price Filter -->
+          <div class="flex flex-col gap-2">
+            <label class="font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider">Narx oralig'i (so'm)</label>
+            <div class="grid grid-cols-2 gap-2">
+              <input type="number" name="min_price" placeholder="Min" value="{{ current_min_price }}" class="w-full px-3 py-2 rounded-xl border border-border-subtle text-xs"/>
+              <input type="number" name="max_price" placeholder="Max" value="{{ current_max_price }}" class="w-full px-3 py-2 rounded-xl border border-border-subtle text-xs"/>
+            </div>
+          </div>
+
+          <!-- Yulduzlar toifasi -->
+          <div class="flex flex-col gap-2">
+            <label class="font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider">Yulduzlar toifasi</label>
+            <div class="space-y-2">
+              {% for star in "54321" %}
+                <label class="flex items-center gap-2 cursor-pointer text-xs font-medium text-gray-700 hover:text-primary">
+                  <input type="checkbox" name="stars" value="{{ star }}" {% if star in selected_stars %}checked{% endif %} class="w-4 h-4 rounded text-secondary focus:ring-secondary/20"/>
+                  <span class="flex items-center gap-0.5">
+                    {% for _ in "x"|ljust:star %}
+                      <span class="material-symbols-outlined text-sm text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+                    {% endfor %}
+                    <span class="ml-1 text-gray-600">{{ star }} yulduzli</span>
+                  </span>
+                </label>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- Amenities Filter -->
+          {% if all_amenities %}
+          <div class="flex flex-col gap-2">
+            <label class="font-label-md text-xs font-semibold text-gray-700 uppercase tracking-wider">Qulayliklar</label>
+            <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+              {% for amenity in all_amenities %}
+                <label class="flex items-center gap-2 cursor-pointer text-xs font-medium text-gray-700 hover:text-primary">
+                  <input type="checkbox" name="amenity" value="{{ amenity.id }}" {% if amenity.id in selected_amenities %}checked{% endif %} class="w-4 h-4 rounded text-secondary focus:ring-secondary/20"/>
+                  <span class="flex items-center gap-1.5">
+                    {% if amenity.icon %}
+                      <span class="material-symbols-outlined text-sm text-secondary">{{ amenity.icon }}</span>
+                    {% endif %}
+                    <span>{{ amenity.name }}</span>
+                  </span>
+                </label>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+
+          <button type="submit" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-white font-label-lg text-xs font-semibold shadow-sm transition-all duration-200 flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-base">filter_list</span>
+            <span>Filtrni qo'llash</span>
+          </button>
+        </form>
+      </aside>
+
+      <!-- RIGHT RESULTS COLUMN -->
+      <section class="lg:col-span-8 xl:col-span-9 flex flex-col gap-6">
+        <!-- Sort bar -->
+        <div class="bg-white p-4 rounded-2xl border border-border-subtle shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p class="text-xs text-gray-500">
+            Jami <strong class="text-gray-900 font-bold">{{ total_hotels }}</strong> ta mehmonxona topildi
+          </p>
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <label class="text-xs text-gray-500 whitespace-nowrap" for="sort-select">Saralash:</label>
+            <select id="sort-select" onchange="window.location.href=this.value" class="px-3 py-1.5 rounded-xl border border-border-subtle bg-white text-xs font-medium focus:ring-2 focus:ring-secondary/20 text-gray-800">
+              <option value="?{{ extra_query }}&sort=rating_desc" {% if sort_by == 'rating_desc' %}selected{% endif %}>Reytingi yuqorilar</option>
+              <option value="?{{ extra_query }}&sort=price_asc" {% if sort_by == 'price_asc' %}selected{% endif %}>Avval arzonlari</option>
+              <option value="?{{ extra_query }}&sort=price_desc" {% if sort_by == 'price_desc' %}selected{% endif %}>Avval qimmatlari</option>
+              <option value="?{{ extra_query }}&sort=newest" {% if sort_by == 'newest' %}selected{% endif %}>Yangi qo'shilganlar</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Hotel Cards List -->
+        <div class="flex flex-col gap-6">
+          {% for hotel in page_obj %}
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-border-subtle flex flex-col md:flex-row group">
+            <!-- Image Left -->
+            <div class="relative md:w-80 h-56 md:h-auto min-h-[220px] overflow-hidden bg-surface-container shrink-0">
+              {% if hotel.primary_image %}
+                <img src="{{ hotel.primary_image.image.url }}" alt="{{ hotel.name }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+              {% else %}
+                <div class="w-full h-full flex items-center justify-center bg-surface-container text-gray-400">
+                  <span class="material-symbols-outlined text-5xl">hotel</span>
+                </div>
+              {% endif %}
+              <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-navy-deep/80 backdrop-blur-md text-white font-label-md text-xs font-semibold">
+                  {{ hotel.city }}
+                </span>
+                <span class="px-2 py-0.5 rounded-full bg-amber-soft text-amber-900 font-label-md text-xs font-bold flex items-center gap-0.5 shadow-sm">
+                  <span class="material-symbols-outlined text-xs text-status-warning" style="font-variation-settings: 'FILL' 1;">star</span>
+                  {{ hotel.stars }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Content Middle & Right -->
+            <div class="p-6 flex-1 flex flex-col justify-between gap-4">
+              <div>
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <h3 class="font-headline-md text-lg sm:text-xl font-bold text-primary group-hover:text-secondary transition-colors">
+                      <a href="{{ hotel.get_absolute_url }}{% if extra_query %}?{{ extra_query }}{% endif %}">{{ hotel.name }}</a>
+                    </h3>
+                    <p class="font-body-sm text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+                      <span class="material-symbols-outlined text-sm text-secondary">location_on</span>
+                      <span>{{ hotel.address }}</span>
+                    </p>
+                  </div>
+                  {% if hotel.avg_rating %}
+                  <div class="text-right shrink-0">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-primary text-white font-bold text-xs shadow-sm">
+                      <span class="material-symbols-outlined text-xs text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+                      {{ hotel.avg_rating }}
+                    </span>
+                    <span class="block text-[10px] text-gray-400 mt-0.5">{{ hotel.total_reviews|default:hotel.review_count }} ta sharh</span>
+                  </div>
+                  {% endif %}
+                </div>
+
+                <p class="font-body-sm text-xs text-gray-600 line-clamp-2 mt-3 leading-relaxed">
+                  {{ hotel.description }}
+                </p>
+
+                <!-- Amenities Pills -->
+                <div class="flex flex-wrap gap-1.5 mt-4">
+                  {% for amenity in hotel.amenities.all|slice:":4" %}
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container text-xs text-gray-700 font-medium">
+                      {% if amenity.icon %}
+                        <span class="material-symbols-outlined text-xs text-secondary">{{ amenity.icon }}</span>
+                      {% endif %}
+                      {{ amenity.name }}
+                    </span>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <!-- Price & CTA bar -->
+              <div class="pt-4 border-t border-border-subtle flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div class="text-left">
+                  <span class="text-[11px] text-gray-500 block">Bir kecha uchun narx</span>
+                  {% if hotel.min_room_price %}
+                    <span class="font-price-lg text-xl sm:text-2xl font-extrabold text-primary">
+                      {{ hotel.min_room_price|floatformat:0 }} so'm
+                    </span>
+                    <span class="text-xs text-gray-500 font-normal">/ kecha</span>
+                  {% else %}
+                    <span class="text-xs text-gray-400">Xonalar narxi ko'rilmagan</span>
+                  {% endif %}
+                </div>
+                <a href="{{ hotel.get_absolute_url }}{% if extra_query %}?{{ extra_query }}{% endif %}" class="px-6 py-2.5 rounded-xl bg-primary-container hover:bg-navy-deep text-white font-label-lg text-xs font-semibold shadow-sm transition-all duration-200 flex items-center justify-center gap-1.5">
+                  <span>Batafsil ko'rish</span>
+                  <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="bg-white rounded-3xl p-12 text-center border border-border-subtle shadow-sm">
+            <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mx-auto mb-4 text-gray-400">
+              <span class="material-symbols-outlined text-3xl">search_off</span>
+            </div>
+            <h3 class="font-headline-md text-lg font-bold text-gray-800">Mehmonxonalar topilmadi</h3>
+            <p class="font-body-sm text-xs text-gray-500 mt-2 max-w-sm mx-auto">
+              Qidiruv parametrlarini o'zgartirib ko'ring yoki filtrlarni tozalang.
+            </p>
+            <a href="{% url 'hotels:list' %}" class="inline-block mt-4 px-5 py-2.5 rounded-xl bg-secondary text-white font-semibold text-xs shadow-sm hover:bg-on-secondary-container transition-colors">
+              Barcha mehmonxonalarni ko'rsatish
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if page_obj.has_other_pages %}
+        <div class="flex items-center justify-center gap-2 pt-6">
+          {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}{% if extra_query %}&{{ extra_query }}{% endif %}" class="w-10 h-10 rounded-xl bg-white border border-border-subtle flex items-center justify-center text-gray-600 hover:bg-surface-container transition-colors">
+              <span class="material-symbols-outlined text-lg">chevron_left</span>
+            </a>
+          {% endif %}
+
+          {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+              <span class="w-10 h-10 rounded-xl bg-primary text-white font-bold text-xs flex items-center justify-center shadow-sm">
+                {{ num }}
+              </span>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+              <a href="?page={{ num }}{% if extra_query %}&{{ extra_query }}{% endif %}" class="w-10 h-10 rounded-xl bg-white border border-border-subtle flex items-center justify-center text-gray-700 hover:bg-surface-container transition-colors text-xs font-semibold">
+                {{ num }}
+              </a>
+            {% endif %}
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if extra_query %}&{{ extra_query }}{% endif %}" class="w-10 h-10 rounded-xl bg-white border border-border-subtle flex items-center justify-center text-gray-600 hover:bg-surface-container transition-colors">
+              <span class="material-symbols-outlined text-lg">chevron_right</span>
+            </a>
+          {% endif %}
+        </div>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}
