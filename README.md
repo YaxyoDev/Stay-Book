@@ -14,18 +14,6 @@ StayBook — foydalanuvchilar O'zbekiston bo'ylab turli mehmonxonalarni qidirish
 
 ---
 
-## 🔑 Demo hisob ma'lumotlari (Credentials)
-
-Bazada oldindan yaratilgan namunaviy foydalanuvchilar:
-
-| Rol | Login / Username | Parol | Huquqlar |
-|---|---|---|---|
-| **Superuser / Platform Admin** | `admin` | `admin1234` | Barcha ma'lumotlar, Django Admin, to'liq boshqaruv |
-| **Mehmonxona Menejeri** | `manager1` | `manager1234` | O'z mehmonxonalari, xonalari, buyurtmalarni tasdiqlash/rad etish |
-| **Oddiy Mijoz (Customer)** | `customer1` | `customer1234` | Bron yaratish, o'z bronlarini ko'rish/bekor qilish, sharh yozish |
-
----
-
 ## 🚀 Loyihani lokal o'rnatish va ishga tushirish
 
 ### 1. Repozitoriyani klonlash va virtual muhit yaratish
