@@ -1,32 +1,8 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
+
 .venv/
-ENV/
-
-# Django
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-media/
-staticfiles/
-
-# Environment
 .env
+stitch_task_and_reading_tracker/
+db.sqlite3
+TASK.md
+__pycache__/
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-Thumbs.db
-Desktop.ini
-.DS_Store
