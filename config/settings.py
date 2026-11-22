@@ -31,6 +31,11 @@ CSRF_TRUSTED_ORIGINS = os.getenv(
 if 'testserver' not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append('testserver')
 
+SECURE_PROXY_SSL_HEADER = (
+    "HTTP_X_FORWARDED_PROTO",
+    "https",
+)
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
